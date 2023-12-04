@@ -1,0 +1,71 @@
+.header{
+    background-color: #dde8fe;
+    padding: 70px 75px;
+}
+p{
+    font-size: 18px;
+}
+.header_content>h1{
+    font-family: "Tilt Neon";
+    color:#2e297b;
+    font-size:60px;
+}
+.header_content>p{
+    font-family: "Montserrat";
+    color:#2e297b;
+    max-width:450px;
+}
+.header-img>img{
+    max-width: 100%;
+    object-fit: cover;
+}
+
+/* sign up*/
+.signup_ops{
+    background-color: #ffffff;
+    padding:50px 75px;
+    color:white;
+}
+.signup_ops h4{
+    margin-bottom: 20px;
+    font-family: "Varela Round";
+    width:325px;
+    text-align: center;
+}
+.signup_ride{
+    background-color:#2f3ab6;
+    padding:25px;
+    margin:20px;
+    border-radius: 4px;
+}
+.signup_ride>img{
+    margin-bottom: 24px;
+}
+.signup_offer{
+    
+    background-color:#fa7167;
+    padding:25px;
+    margin:20px;
+    border-radius: 4px;
+}
+.signup_btns{
+    text-decoration: none;
+    padding:10px 24px;
+    background-color: white;
+    color:#4d4d4d;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 4px;
+    transition: all 0.2s;
+}
+.offer_btn{
+    color:#fa7167;
+}
+.ride_btn{
+    color:#2f3ab6;
+}
+.signup_btns:hover{
+    cursor:pointer;
+    box-shadow: 0px 4px 20px 0px #4d4d4d;
+    transform: scale(1.05);
+}
