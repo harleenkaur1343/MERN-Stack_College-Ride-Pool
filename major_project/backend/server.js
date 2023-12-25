@@ -1,7 +1,7 @@
 const express = require("express");
-const app = express();
-const http = require('http'); 
-const server = http.createServer(app); 
+const app = express()
+const http = require("http");
+const server = http.createServer(app);
 
 /*const httpServer = require('http').createServer(app);*/
 
@@ -9,15 +9,15 @@ const userRoutes = require("./routes/user");
 const chatRoutes = require("./routes/chat");
 const messageRoutes = require("./routes/message");
 
-const io = require('socket.io')(server, {
+const io = require("socket.io")(server, {
   cors: {
-   origin: "http://localhost:3000", //specific origin you want to give access to,
-},
+    origin: "http://localhost:3000", //specific origin you want to give access to,
+  },
 });
 
-//http instead of app to listen 
-server.listen(4000, () => {
-  console.log("Connected to database and listening to port 4000");
+//http instead of app to listen
+server.listen(8000, () => {
+  console.log("Connected to database and listening to port 8000");
 });
 
 //const Server = socket(server);
@@ -47,14 +47,6 @@ mongoose
   .then(() => console.log("Database connected!"))
   .catch((err) => console.error(err));
 
-//const io = socket(server);
-/*const io = new Server(server, {
-  pingTimeout: 60000,
-  cors: {
-    origin: "http://localhost:3000",
-  },
-});*/
-
 io.on("connection", (socket) => {
   console.log("Socket connected " + socket.id);
   socket.on("setup", (userData) => {
@@ -64,7 +56,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("join-chat", (room) => {
-    console.log(room + " joined");
+    //console.log(room + " joined");
     socket.join(room);
   });
 

@@ -21,5 +21,5 @@ const chatSchema = new mongoose.Schema(
 
     module.exports = mongoose.model("Chat", chatSchema);
     
-// Finally for the message model in models/message.js, the following code will be used
+
 

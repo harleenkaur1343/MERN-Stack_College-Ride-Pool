@@ -29,11 +29,11 @@ const loginUser = async(req,res) =>{
 //need to use a regular function
 
 const signupUser = async function(req,res){
-    const {name,email,phone,urn,password,role,location} = req.body;
+    const {name,email,phone,urn,password,role,branch,year,ridetype,location} = req.body;
     //to catch the existing user error 
 
     try{
-       const user =  await User.signup(name,email,phone,urn,password,role,location);
+       const user =  await User.signup(name,email,phone,urn,password,role,location,branch,year,ridetype);
        const token = createToken(user._id);
        res.status(200).json({_id: user._id,name:user.name,email,token})
        console.log(user)
@@ -48,7 +48,7 @@ const getLocResults = async function(req,res)
 {
     const loc = req.query.loc;
     console.log(loc);
-    const users = await User.find({location:loc, role:"rider"})
+    const users = await User.find({location:loc, role:"offerer"}).select("name _id email location urn branch year")
     .then((user)=>{
         if(user==null)
         {
@@ -70,10 +70,29 @@ const searchUser = async (req, res) => {
     const user = await User.find({
       name: { $regex: search, $options: "i" },
     }).select("name _id email");
-  
+
+    if(user)
     res.status(200).json(user);
+    else{
+        res.status(400).json("No such user exists")
+    }
+};
+
+const searchUserProfile = async (req, res) => {
+    const { urn } = req.query;
+    console.log(urn)
+    const user = await User.find({
+     urn:urn
+    }).select("name _id email location branch year ridetype")
+    console.log(user)
+    if(user)
+    {res.status(200).json(user);}
+    else{
+        res.status(400)
+        throw Error("No such user exists")
+    }
 };
 
 module.exports = {
-    signupUser, loginUser, getLocResults, searchUser
+    signupUser, loginUser, getLocResults, searchUser, searchUserProfile
 }

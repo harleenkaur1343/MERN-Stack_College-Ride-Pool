@@ -22,6 +22,7 @@ const getChat = async (req, res) => {
   });
 
   if (chat.length > 0) {
+    console.log(chat[0])
     res.send(chat[0]);
   } else {
     const createChat = await Chat.create({
