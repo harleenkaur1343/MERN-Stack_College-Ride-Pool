@@ -10,9 +10,7 @@ import { useLogin } from "../hooks/useLogin";
 import { useAuthContest } from "../hooks/useAuthContext";
 
 const Login = () => {
-
   const { login, error, isLoading } = useLogin();
-
 
   //default values
   const formvals = {
@@ -21,8 +19,7 @@ const Login = () => {
     password: "",
   };
 
-
-//for validation
+  //for validation
   const [emailV, setEmailV] = useState(false);
   const [urnV, setUrnV] = useState(false);
   const [passwordV, setPasswordV] = useState(false);
@@ -51,7 +48,7 @@ To update the state of form, we can write a simple function:
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     // get our new errors
     const newErrors = findFormErrors();
     // Conditional logic:
@@ -59,10 +56,10 @@ To update the state of form, we can write a simple function:
       // We got errors!
       setErrors(newErrors);
     } else {
-      console.log(form);
+      //console.log(form);
 
       await login(form.email, form.urn, form.password).then((res) => {
-        console.log(res)
+        console.log(res);
         if (res == null) {
           setForm(formvals);
           setErrors(formvals);
@@ -77,7 +74,6 @@ To update the state of form, we can write a simple function:
 
     const newErrors = {};
     // name errors
-    console.log(name);
 
     if (!email || email === "") {
       newErrors.email = "This is a required field";
@@ -115,13 +111,19 @@ To update the state of form, we can write a simple function:
         fluid
         className="signup_form_cont d-flex flex-column justify-content-center align-items-center"
       >
-        <Form noValidate onSubmit={handleSubmit} className="signup_form">
-          <h2>Login</h2>
+        <Form
+          noValidate
+          onSubmit={handleSubmit}
+          className="signup_form"
+          style={{ width: "450px" }}
+        >
+          <h3>Sign In</h3>
           <br></br>
 
           <Form.Group className="form_group">
             <Form.Label>Email</Form.Label>
             <Form.Control
+              style={{ width: "100%" }}
               type="text"
               required
               onChange={(e) => setField("email", e.target.value)}
@@ -136,6 +138,7 @@ To update the state of form, we can write a simple function:
           <Form.Group className="form_group">
             <Form.Label>University Roll Number</Form.Label>
             <Form.Control
+              style={{ width: "100%" }}
               type="number"
               required
               onChange={(e) => setField("urn", e.target.value)}
@@ -150,6 +153,7 @@ To update the state of form, we can write a simple function:
           <Form.Group className="form_group">
             <Form.Label>Password</Form.Label>
             <Form.Control
+              style={{ width: "100%" }}
               type="password"
               required
               onChange={(e) => setField("password", e.target.value)}
@@ -162,8 +166,8 @@ To update the state of form, we can write a simple function:
           </Form.Group>
           <br></br>
           <center>
-            <Button type="submit" disabled={isLoading}>
-              Submit form
+            <Button className="submitBtn" type="submit" disabled={isLoading}>
+              SIGN IN
             </Button>
             {error && (
               <div

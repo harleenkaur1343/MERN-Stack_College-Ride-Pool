@@ -19,11 +19,11 @@ const Chatpage = () => {
       setFetchAgain(false);
       navigate("/session-timed-out");
     }
-    console.log("Fetch again",fetchAgain)
+    //console.log("Fetch again",fetchAgain)
   },[])
   return (
     <div style={{ width: "100%" }}>
-      {user && <SideBar />}
+      {/*user && <SideBar />*/}
       <div
         style={{
           display: "flex",

@@ -25,7 +25,7 @@ const SearchBar = () => {
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
     // the string searched and for the second the results.
-    console.log(string, results);
+    //console.log(string, results);
     if(string=="")
     {
       setFetchRes([{
@@ -40,13 +40,12 @@ const SearchBar = () => {
 
   const handleOnHover = (result) => {
     // the item hovered
-    console.log(result);
+    
   };
   
   const handleOnSelect = async (item) => {
     
     // the item selected
-    console.log("Area : " + item.area);
     setLocality(item.area);
     let url = "http://localhost:3000/user/location/?loc=" + locality;
 
@@ -76,18 +75,20 @@ const SearchBar = () => {
                     name: val.name,
                     urn: val.urn,
                     location: val.location,
+                    branch:val.branch,
+                    year:val.year,
                     role: "offerer",
                   });         
                 });
-                //console.log(dataWrap);
+                
               setFetchRes(dataWrap)  ;
               console.log("Results of search")
               console.log(fetchRes);
             }
           })
           .catch((err) => {
-            console.log("inside error");
-            console.log("Your Error : " + err);
+            
+            console.log("Searchbar Error : " + err);
             //console.log(err);
           });
       }
@@ -98,7 +99,7 @@ const SearchBar = () => {
   };
 
   const handleOnFocus = () => {
-    console.log("Focused");
+    
   };
 
   const formatResult = (item) => {
@@ -113,7 +114,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <div style={{ width: "700px", marginTop: "100px" }}>
+      <div style={{ width: "650px"}}>
         <ReactSearchAutocomplete
           items={locations}
           fuseOptions={{ keys: ["area"] }} // Search on both fields

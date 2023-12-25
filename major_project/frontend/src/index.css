@@ -1,6 +1,10 @@
+html{
+  min-height:85vh;
+}
 body{
-  margin:0;
-  padding:0px
+  margin-top:-15px;
+  padding:0px;
+  min-height:85vh
 }
 
 @media only screen and (max-width:992px)

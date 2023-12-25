@@ -18,6 +18,10 @@ const Signup_rider = () => {
     phone: 0,
     urn: 0,
     password: "",
+    ridetype: "none",
+    password: "",
+    branch: "",
+    year: "",
     location: "Other",
     role: "rider",
   };
@@ -26,6 +30,8 @@ const Signup_rider = () => {
   const [phoneV, setPhoneV] = useState(false);
   const [urnV, setUrnV] = useState(false);
   const [passwordV, setPasswordV] = useState(false);
+  const [branchV, setBranchV] = useState(false);
+  const [yearV, setYearV] = useState(false);
   const [locationV, setLocationV] = useState(false);
 
   const [fetchErr, setFetchErr] = useState(null);
@@ -61,7 +67,6 @@ To update the state of form, we can write a simple function:
       // We got errors!
       setErrors(newErrors);
     } else {
-      console.log(form);
       await signup(
         form.name,
         form.email,
@@ -69,49 +74,30 @@ To update the state of form, we can write a simple function:
         form.urn,
         form.location,
         form.password,
+        form.branch,
+        form.year,
+        form.ridetype,
         "rider"
-      );
-
-      if (error == null) {
-        alert("Thanks for signing up");
-        setForm(formvals);
-        setErrors(formvals);
-      }
-      /*const response = await fetch("/user/signup", {
-        method: "POST",
-        url: "/user/signup",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name: form.name + "",
-          email: form.email + "",
-          phone: form.phone.toString(),
-          urn: form.urn.toString(),
-          password: form.password + "",
-          location: form.location + "",
-          role: "rider",
-        }),
-      })
-        .then((value) => {
-          console.log(value.json());
-          alert("Thanks for signing up");
-          setForm(formvals);
-          setErrors(formvals);
+      )
+        .then((response) => {
+          if (error == null) {
+            alert("Thanks for signing up");
+            setForm(formvals);
+            setErrors(formvals);
+          }
         })
         .catch((err) => {
-          const { error } = err;
-          console.log("ERROR");
-          console.log(error);
+          console.log(err);
         });
-      */
     }
   };
 
   const findFormErrors = () => {
-    const { name, email, phone, urn, password } = form;
+    const { name, email, phone, urn, password, branch, year } = form;
 
     const newErrors = {};
     // name errors
-    console.log(name);
+
     if (!name || name === "" || name.length > 40) {
       newErrors.name = "Invalid Name";
       setNameV(true);
@@ -149,6 +135,34 @@ To update the state of form, we can write a simple function:
       delete newErrors.phone;
       setPhoneV(false);
     }
+    if (!branch || branch === "") {
+      newErrors.branch = "This is a required field!";
+      setBranchV(true);
+    } else {
+      delete newErrors.branch;
+      setBranchV(false);
+    }
+
+    if (!year || year === "") {
+      newErrors.year = "This is a required field!";
+      setYearV(true);
+    } else {
+      delete newErrors.year;
+      setYearV(false);
+    }
+
+    if (
+      (branch === "MBA" && (year === "3rd" || year === "4th")) ||
+      ((branch === "MCA" || branch === "BCA") && year === "4th")
+    ) {
+      console.log("Invalid year");
+      newErrors.year = "Invalid year";
+      setYearV(true);
+    } else {
+      console.log("year");
+      delete newErrors.year;
+      setYearV(false);
+    }
 
     if (!password || password === "") {
       newErrors.password = "This is a required field!";
@@ -168,105 +182,158 @@ To update the state of form, we can write a simple function:
         className="signup_form_cont d-flex flex-column justify-content-center align-items-center"
       >
         <Form noValidate onSubmit={handleSubmit} className="signup_form">
-          <h2>Signup - Rider</h2>
+          <h3>Signup - Rider</h3>
           <br></br>
-          <Form.Group className="form_group">
-            <Form.Label>Name</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              onChange={(e) => setField("name", e.target.value)}
-              isInvalid={!!nameV}
-              value={form.name}
-            />
-            <Form.Control.Feedback type="invalid">
-              {errors.name}
-            </Form.Control.Feedback>
-          </Form.Group>
+          <div className="row">
+            <div className="col-md-6">
+              <Form.Group className="form_group">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  required
+                  onChange={(e) => setField("name", e.target.value)}
+                  isInvalid={!!nameV}
+                  value={form.name}
+                />
+                <Form.Control.Feedback type="invalid">
+                  {errors.name}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          <Form.Group className="form_group">
-            <Form.Label>Email</Form.Label>
-            <Form.Control
-              type="text"
-              required
-              onChange={(e) => setField("email", e.target.value)}
-              isInvalid={!!emailV}
-              value={form.email}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.email}
-            </Form.Control.Feedback>
-          </Form.Group>
+              <Form.Group className="form_group">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  type="text"
+                  required
+                  onChange={(e) => setField("email", e.target.value)}
+                  isInvalid={!!emailV}
+                  value={form.email}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.email}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          <Form.Group className="form_group">
-            <Form.Label>Phone Number</Form.Label>
-            <Form.Control
-              type="number"
-              required
-              onChange={(e) => setField("phone", e.target.value)}
-              isInvalid={!!phoneV}
-              value={form.phone}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.phone}
-            </Form.Control.Feedback>
-          </Form.Group>
+              <Form.Group className="form_group">
+                <Form.Label>Phone Number</Form.Label>
+                <Form.Control
+                  type="number"
+                  required
+                  onChange={(e) => setField("phone", e.target.value)}
+                  isInvalid={!!phoneV}
+                  value={form.phone}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.phone}
+                </Form.Control.Feedback>
+              </Form.Group>
 
-          <Form.Group className="form_group">
-            <Form.Label>University Roll Number</Form.Label>
-            <Form.Control
-              type="number"
-              required
-              onChange={(e) => setField("urn", e.target.value)}
-              isInvalid={!!urnV}
-              value={form.urn}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.urn}
-            </Form.Control.Feedback>
-          </Form.Group>
-
-          <Form.Group className="form_group">
-            <Form.Label>Location</Form.Label>
-            <Form.Select
-              type="text"
-              required
-              onChange={(e) => setField("location", e.target.value)}
-              isInvalid={!!locationV}
-              value={form.location}
-            >
-              {locations.map((loc) => {
-                return (
-                  <option value={loc.area}>
-                    {loc.area}, {loc.pincode}, {loc.city}
+              <Form.Group className="form_group">
+                <Form.Label>University Roll Number</Form.Label>
+                <Form.Control
+                  type="number"
+                  required
+                  onChange={(e) => setField("urn", e.target.value)}
+                  isInvalid={!!urnV}
+                  value={form.urn}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.urn}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </div>
+            <div className="col-md-6">
+              <Form.Group className="form_group">
+                <Form.Label>Branch</Form.Label>
+                <Form.Select
+                  type="text"
+                  required
+                  onChange={(e) => setField("branch", e.target.value)}
+                  isInvalid={!!branchV}
+                  value={form.branch}
+                >
+                  <option value="B.Tech - IT">B.Tech - IT</option>
+                  <option value="B.Tech - IT">B.Tech - CSE</option>
+                  <option value="B.Tech - IT">B.Tech - ECE</option>
+                  <option value="B.Tech - IT">B.Tech - EE</option>
+                  <option value="B.Tech - IT">B.Tech - CE</option>
+                  <option value="B.Tech - IT">B.Tech - ME</option>
+                  <option value="MBA">MBA</option>
+                  <option value="MCA">MCA</option>
+                  <option value="BCA">BCA</option>
+                  <option value="M.Tech - IT">M.Tech - IT</option>
+                  <option value="M.Tech - IT">M.Tech - CSE</option>
+                  <option value="M.Tech - IT">M.Tech - ECE</option>
+                  <option value="M.Tech - IT">M.Tech - EE</option>
+                  <option value="M.Tech - IT">M.Tech - CE</option>
+                  <option value="M.Tech - IT">M.Tech - ME</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.branch}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="form_group">
+                <Form.Label>Year</Form.Label>
+                <Form.Select
+                  type="text"
+                  required
+                  onChange={(e) => setField("year", e.target.value)}
+                  isInvalid={!!yearV}
+                  value={form.year}
+                >
+                  <option value="1st">1st</option>
+                  <option value="2nd">2nd</option>
+                  <option value="3rd">3rd</option>
+                  <option value="4th">4th</option>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.year}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="form_group">
+                <Form.Label>Location</Form.Label>
+                <Form.Select
+                  type="text"
+                  required
+                  onChange={(e) => setField("location", e.target.value)}
+                  isInvalid={!!locationV}
+                  value={form.location}
+                >
+                  {locations.map((loc) => {
+                    return (
+                      <option value={loc.area}>
+                        {loc.area}, {loc.pincode}, {loc.city}
+                      </option>
+                    );
+                  })}
+                  <option selected="selected" value="Other">
+                    Other
                   </option>
-                );
-              })}
-              <option selected="selected" value="Other">
-                Other
-              </option>
-            </Form.Select>
-            <Form.Control.Feedback type="invalid">
-              {errors.urn}
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group className="form_group">
-            <Form.Label>Password</Form.Label>
-            <Form.Control
-              type="password"
-              required
-              onChange={(e) => setField("password", e.target.value)}
-              isInvalid={!!passwordV}
-              value={form.password}
-            ></Form.Control>
-            <Form.Control.Feedback type="invalid">
-              {errors.password}
-            </Form.Control.Feedback>
-          </Form.Group>
+                </Form.Select>
+                <Form.Control.Feedback type="invalid">
+                  {errors.location}
+                </Form.Control.Feedback>
+              </Form.Group>
+              <Form.Group className="form_group">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  required
+                  onChange={(e) => setField("password", e.target.value)}
+                  isInvalid={!!passwordV}
+                  value={form.password}
+                ></Form.Control>
+                <Form.Control.Feedback type="invalid">
+                  {errors.password}
+                </Form.Control.Feedback>
+              </Form.Group>
+            </div>
+          </div>
+
           <br></br>
           <center>
-            <Button type="submit" disabled={isLoading}>
-              Submit form
+            <Button className="submitBtn" type="submit" disabled={isLoading}>
+              SIGN UP
             </Button>
             {error && (
               <div

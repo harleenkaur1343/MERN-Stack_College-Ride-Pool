@@ -26,9 +26,7 @@ const SideBar = () => {
 
     try {
       setLoading(true);
-      console.log("Searched text");
-      console.log(`${process.env.REACT_APP_URL}/user/users?search=${search}`);
-      console.log(search);
+
       const { data } = await axios.get(
         //change auth to user
         `${process.env.REACT_APP_URL}/user/users?search=${search}`,
@@ -38,12 +36,12 @@ const SideBar = () => {
           },
         }
       );
-      console.log(data);
+     
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
       console.log(error);
-      toast.error(error);
+      //toast.error(error);
     }
   };
 
@@ -82,7 +80,6 @@ const SideBar = () => {
           justifyContent: "space-between",
           padding: "0px 15px",
           alignItems: "center",
-          backgroundColor: "#333",
           color: "#fff",
         }}
       >
@@ -100,17 +97,19 @@ const SideBar = () => {
         >
           Search User
         </button>
-        <h2>Chat app</h2>
+        {/*<h2>Chat app</h2>*/}
       </div>
       {open && (
         <div
           style={{
             position: "fixed",
-            left: "0",
+            left: "20px",
+            top:"165px",
             backgroundColor: "#030303c2",
+            borderRadius:"12px",
             color: "white",
             height: "70vh",
-            width: "35%",
+            width: "29%",
             display: "flex",
             flexDirection: "column",
             alignItems: "center",
@@ -118,18 +117,45 @@ const SideBar = () => {
             padding: "10px",
           }}
         >
-          <h2>Search Users</h2>
           {/* <div> */}
-          <input
-            className="input"
-            style={{ width: "100%" }}
-            placeholder="Search by name or email"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-          />
-          <button className="btn" onClick={handleSearch}>
-            Go
-          </button>
+          <div
+            className="row align-self-start"
+            style={{ margin: "20px 0px", width: "100%" }}
+          >
+            <div className="col-10" style={{padding: "0" }}>
+              <input
+                className="input"
+                style={{
+                  float: "left",
+                  width: "96%",
+                  height: "50px",
+                  border: "none",
+                  borderRadius: "8px",
+                  padding: "0px 16px",
+                  fontSize: "16px",
+                  marginRight: "4px"
+                }}
+                placeholder="Search by name or email"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </div>
+            <div className="col-2" style={{ margin: "0px", padding: "0" }}>
+              <span
+                className="btn"
+                onClick={handleSearch}
+                style={{
+                  padding: "12px 16px",
+                  color: "white",
+                  backgroundColor: "#2F3AB6",
+                  heignt: "50px",
+                }}
+              >
+                Go
+              </span>
+            </div>
+          </div>
+
           {loading ? (
             <p>Loading...</p>
           ) : (
@@ -144,7 +170,9 @@ const SideBar = () => {
                   borderRadius: "12px",
                   textAlign: "center",
                   padding: "10px",
-                  fontWeight: "bolder",
+                  fontSize:"16px",
+                  fontWeight:"500",
+                  fontFamily:"Varela Round",
                   color: "black",
                 }}
                 onClick={() => accessChat(user._id)}

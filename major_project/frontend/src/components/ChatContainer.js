@@ -5,7 +5,7 @@ import { useAuthContest } from "../hooks/useAuthContext";
 const ChatContainer = ({ fetchAgain, setFetchAgain }) => {
   const { selectedChat } = useAuthContest();
   return (
-    <div
+    <div className="chatContainer"
     style={{
       display:  "flex",
       flexDirection: "column",

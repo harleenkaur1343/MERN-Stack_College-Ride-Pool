@@ -66,6 +66,6 @@ p{
 }
 .signup_btns:hover{
     cursor:pointer;
-    box-shadow: 0px 4px 20px 0px #4d4d4d;
-    transform: scale(1.05);
+    box-shadow: 0px 4px 6px 0px #71717180;
+    transform: scale(1.02);
 }

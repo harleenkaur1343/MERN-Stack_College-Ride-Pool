@@ -1,0 +1,30 @@
+.profileCont{
+    margin-top: 140px;
+    
+}
+.profileCont>p{
+    color:#4d4d4d;
+    font-size: 16px;
+}
+.profileCont .userInfoCont>span{
+    float:left;
+    margin-right:30px;
+}
+.profileCont .userInfoCont>span>img{
+    margin-right:4px;
+}
+.profileCont .userRideCont{
+    gap:25px
+}
+.profileCont .userRideCont .rideType{
+    padding:16px;
+    border:1px solid #d5d5d5;
+    background-color: #f5f5f5;
+    border-radius: 8px;
+    font-family: "Varela Round";
+    color:#2F3AB6;
+    text-align:center;
+}
+.userRideCont img{
+    display:block;
+}

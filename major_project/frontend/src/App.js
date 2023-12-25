@@ -8,9 +8,7 @@ import Home from './components/Home';
 import MyChat from './components/MyChat';
 import Chatpage from './components/ChatPage';
 import { useAuthContest } from "./hooks/useAuthContext"; 
-import Singlechat from './components/Singlechat';
-import ChatContainer from './components/ChatContainer';
-import SideBar from './components/Sidebar';
+import Profile from './components/Profile';
 
 
 /* to whole refresh .env file was added after reintalling the npm package */
@@ -23,7 +21,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar></Navbar>
-         <div className='pages' style={{marginTop:"80px"}}>
+         <div className='pages' style={{minHeight:"85vh",marginTop:"80px"}}>
           <Routes>
             <Route
               path="/"
@@ -45,21 +43,13 @@ function App() {
               path="/home"
               element={user?<Home/>:<Navigate to="/login"/>}
             />
-             <Route
-              path="/chat"
-              element={<MyChat/>}
-            />
             <Route
               path="/chatpage"
-              element={<Chatpage/>}
-            />
-             <Route
-              path="/singlechat"
-              element={<Singlechat/>}
-            />
+              element={user?<Chatpage/>:<Navigate to="/login"/>}
+            />          
             <Route
-              path="/sidebar"
-              element={<SideBar/>}
+              path="/profile"
+              element={user?<Profile/>:<Navigate to="/login"/>}
             />
           </Routes>
          </div>

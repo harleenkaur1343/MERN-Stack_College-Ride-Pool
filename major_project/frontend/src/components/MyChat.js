@@ -5,6 +5,7 @@ import axios from "axios";
 //import GroupChatModal from "./GroupChatModal";
 //import { getSender } from "../config/chat";
 import { toast } from "react-toastify";
+import SideBar from "./Sidebar";
 
 const MyChat = ({ fetchAgain }) => {
   useEffect(() => {
@@ -41,6 +42,7 @@ const MyChat = ({ fetchAgain }) => {
         padding: "3px",
         width: "31%",
         backgroundColor: "white",
+        paddingTop:"10px"
       }}
     >
       <div
@@ -51,10 +53,14 @@ const MyChat = ({ fetchAgain }) => {
           justifyContent: "space-between",
           width: "100%",
           padding: "5px",
+          alignContent:"center",
+
         }}
       >
-        <p style={{ marginLeft: "5px" }}>My Chats</p>
+        <p style={{ marginLeft: "10px", fontWeight:"500"}}>My Chats</p>
+        <span><SideBar></SideBar></span>
       </div>
+      <br></br>
       <div
         style={{
           display: "flex",
@@ -85,8 +91,7 @@ const MyChat = ({ fetchAgain }) => {
               }}
               key={chat?._id}
             >
-              
-              {chat?.users[1].name}
+              {(chat.users[1]).name?chat.users[1].name:<p>none</p>}
             </div>
           ))
         ) : (

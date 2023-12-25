@@ -4,13 +4,7 @@ import { toast } from "react-toastify";
 import { getSender } from "../config/chat";
 import ScrollableChat from "./ScrollableChat";
 import { useAuthContest } from "../hooks/useAuthContext";
-//import sendIcon from "./send.svg";
-//import UpdateGroupChatModel from "./UpdateGroupChatModel";
 import io from "socket.io-client";
-/*import emojiIcon from "./smileyEmoji.svg";
-import data from "@emoji-mart/data";
-import Picker from "@emoji-mart/react";
-import suprsend from "@suprsend/web-sdk";*/
 
 let socket, selectedChatCompare;
 
@@ -21,6 +15,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const [socketConnected, setSocketConnected] = useState(false);
   const [typing, setTyping] = useState(false);
   const [isTyping, setIsTyping] = useState(false);
+  const [timeCon, setTimeCon] = useState(false);
 
   const { user, selectedChat, setSelectedChat } = useAuthContest();
 
@@ -40,7 +35,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         }
       );
-      console.log("Messages", data);
+      // console.log("Messages", data);
       setMessages(data);
       setLoading(false);
       socket.emit("join-chat", selectedChat._id);
@@ -54,7 +49,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     sendMessage();
   };
   const sendMessage = async () => {
-    console.log(newMessage);
     if (newMessage) {
       socket.emit("stop-typing", selectedChat._id);
       try {
@@ -84,7 +78,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     // socket = io(`${process.env.REACT_APP_URL}`);
-    socket = io.connect("http://localhost:4000");
+    socket = io.connect("http://localhost:8000");
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
@@ -112,9 +106,9 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   });
 
   const typingHandler = (e) => {
-    console.log(e.target.value);
+    //console.log(e.target.value);
     setNewMessage(e.target.value);
-
+   
     if (!socketConnected) return;
 
     if (!typing) {
@@ -202,14 +196,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 marginTop: "10px",
                 display: "flex",
                 flexDirection: "column",
+                marginBottom: "20px",
               }}
             >
-              {isTyping ? <div>Typing ...</div> : <></>}
+             
               <div
                 style={{
-                  width: "63%",
+                  width: "100%",
                   margin: "auto",
-                  position: "fixed",
+
                   bottom: "30px",
                   border: "1px solid white",
                   border: "none",
@@ -252,6 +247,40 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   <option value="You can select a time for meeting">
                     You can select a time for meeting
                   </option>
+                  
+                    <option value="9:30AM">
+                     9:30AM
+                    </option>
+                
+                  
+                    <option value="10:30AM">
+                     10:30AM
+                    </option>
+                  
+                    <option value="11:30AM">
+                     11:30AM
+                    </option>
+                  
+                    <option value="12:30PM">
+                     12:30PM
+                    </option>
+                  
+                    <option value="01:30PM">
+                     01:30PM
+                    </option>
+                  
+                    <option value="02:30PM">
+                     02:30PM
+                    </option>
+                  
+                    <option value="03:30PM">
+                     03:30PM
+                    </option>
+                  
+                    <option value="04:30PM">
+                     04:30PM
+                    </option>
+                  
                 </select>
                 <button
                   style={{
@@ -262,26 +291,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                     textAlign: "center",
                     padding: "10px 12px",
                     borderRadius: "5px",
+                    border: "none",
                   }}
                   onClick={sendMessage}
                 >
                   Send
                 </button>
-                {/*<input
-                  style={{
-                    width: "95%",
-                    backgroundColor: "crimson",
-                    border: "none",
-                    borderRadius: "5px",
-                    outline: "none",
-                    padding: "10px",
-                    fontSize: "16px",
-                  }}
-                  placeholder="Select a message.."
-                  value={newMessage}
-                  onKeyDown={sendMessage}
-                  onChange={typingHandler}
-                />*/}
               </div>
             </div>
           </div>
