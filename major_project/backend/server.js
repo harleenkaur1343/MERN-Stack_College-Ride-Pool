@@ -48,6 +48,10 @@ mongoose
   .then(() => console.log("Database connected!"))
   .catch((err) => console.error(err));
 
+app.use(cors({
+  origin: "https://mern-stack-college-ride-pool.vercel.app",
+}));
+
 io.on("connection", (socket) => {
   console.log("Socket connected " + socket.id);
   socket.on("setup", (userData) => {
@@ -81,3 +85,4 @@ io.on("connection", (socket) => {
     socket.leave(userData._id);
   });
 });
+
