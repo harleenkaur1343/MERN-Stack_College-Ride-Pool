@@ -10,23 +10,11 @@ const userRoutes = require("./routes/user");
 const chatRoutes = require("./routes/chat");
 const messageRoutes = require("./routes/message");
 
-const io = require("socket.io")(server, {
-  cors: {
-    origin: "https://mern-stack-college-ride-pool.vercel.app/", //specific origin you want to give access to,
-  },
-});
-
-//http instead of app to listen
-server.listen(process.env.PORT, () => {
-  console.log("Connected to database and listening to port 8000");
-});
-
 //const Server = socket(server);
 const db = require("./config/db");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 
 //middleware
 app.use(cors());
@@ -43,14 +31,28 @@ app.use("/user", userRoutes);
 app.use("/chat", chatRoutes);
 app.use("/message", messageRoutes);
 
+
+app.use(cors({
+  origin: "https://mern-stack-college-ride-pool.vercel.app",
+  methods: ["GET","POST","PUT","DELETE"]
+}));
+
+//http instead of app to listen
+server.listen(process.env.PORT, () => {
+  console.log("Connected to database and listening to port 8000");
+});
+
+
 mongoose
   .connect(db)
   .then(() => console.log("Database connected!"))
   .catch((err) => console.error(err));
 
-app.use(cors({
-  origin: "https://mern-stack-college-ride-pool.vercel.app",
-}));
+const io = require("socket.io")(server, {
+  cors: {
+    origin: "https://mern-stack-college-ride-pool.vercel.app/", //specific origin you want to give access to,
+  },
+});
 
 io.on("connection", (socket) => {
   console.log("Socket connected " + socket.id);
@@ -85,4 +87,5 @@ io.on("connection", (socket) => {
     socket.leave(userData._id);
   });
 });
+
 
