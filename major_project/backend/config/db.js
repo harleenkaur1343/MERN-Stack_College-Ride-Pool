@@ -1,5 +1,6 @@
-const mongoose = require('mongoose');
+require("dotenv").config();
+const mongoose = require("mongoose");
 
-const db = 'mongodb://127.0.0.1:27017/ridepool';
+const db = process.env.MONGO_URI;
 
-module.exports=db;
+module.exports = db;

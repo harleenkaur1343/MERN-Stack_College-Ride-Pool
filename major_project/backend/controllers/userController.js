@@ -1,6 +1,7 @@
 const { Error } = require('mongoose');
 const User = require('../models/userModel');
 const jwt = require('jsonwebtoken');
+require("dotenv").config();
 
 const createToken = (_id) => {
     //the unique identifier, Key and some info

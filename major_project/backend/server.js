@@ -2,6 +2,7 @@ const express = require("express");
 const app = express()
 const http = require("http");
 const server = http.createServer(app);
+require("dotenv").config();
 
 /*const httpServer = require('http').createServer(app);*/
 
@@ -11,12 +12,12 @@ const messageRoutes = require("./routes/message");
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "http://localhost:3000", //specific origin you want to give access to,
+    origin: "https://mern-stack-college-ride-pool.vercel.app/", //specific origin you want to give access to,
   },
 });
 
 //http instead of app to listen
-server.listen(8000, () => {
+server.listen(process.env.PORT, () => {
   console.log("Connected to database and listening to port 8000");
 });
 
@@ -25,7 +26,7 @@ const db = require("./config/db");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-require("dotenv").config();
+
 
 //middleware
 app.use(cors());
