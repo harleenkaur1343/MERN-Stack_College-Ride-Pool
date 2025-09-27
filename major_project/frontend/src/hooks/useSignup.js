@@ -22,22 +22,25 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
-    const response = await fetch(`${REACT_APP_API_BASE_URL}/user/signup`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        name,
-        email,
-        phone,
-        urn,
-        location,
-        password,
-        branch,
-        year,
-        ridetype,
-        role,
-      }),
-    });
+    const response = await fetch(
+      `${process.env.REACT_APP_API_BASE_URL}/user/signup`,
+      {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          email,
+          phone,
+          urn,
+          location,
+          password,
+          branch,
+          year,
+          ridetype,
+          role,
+        }),
+      }
+    );
     const json = await response.json();
 
     if (!response.ok) {
