@@ -30,7 +30,7 @@ export const AuthContextProvider = ({ children }) => {
       const fetchChats = async () => {
         try {
           const { data } = await axios.get(
-            `${process.env.REACT_APP_URL}/chat`,
+            `${process.env.API_BASE_URL}/chat`,
             {
               headers: {
                 Authorization: `Bearer ${user.token}`,
