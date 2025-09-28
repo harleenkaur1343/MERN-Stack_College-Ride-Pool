@@ -47,7 +47,7 @@ const SearchBar = () => {
     
     // the item selected
     setLocality(item.area);
-    let url = "http://localhost:3000/user/location/?loc=" + locality;
+    let url = `${process.env.REACT_APP_API_BASE_URL}/user/location/?loc=${locality}`;
 
     try{
       if(user)
@@ -134,3 +134,4 @@ const SearchBar = () => {
 };
 
 export default SearchBar;
+
