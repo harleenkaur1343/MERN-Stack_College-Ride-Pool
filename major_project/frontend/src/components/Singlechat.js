@@ -28,7 +28,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     try {
       setLoading(true);
       const { data } = await axios.get(
-        `${process.env.REACT_APP_URL}/message?chatId=${selectedChat._id}`,
+        `${process.env.REACT_APP_API_BASE_URL}/message?chatId=${selectedChat._id}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -53,7 +53,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
       socket.emit("stop-typing", selectedChat._id);
       try {
         const { data } = await axios.post(
-          `${process.env.REACT_APP_URL}/message`,
+          `${process.env.REACT_APP_API_BASE_URL}/message`,
           {
             message: newMessage,
             chatId: selectedChat,
@@ -77,7 +77,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   };
 
   useEffect(() => {
-    // socket = io(`${process.env.REACT_APP_URL}`);
+    // socket = io(`${process.env.REACT_APP_API_BASE_URL}`);
     socket = io.connect("http://localhost:8000");
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
@@ -325,3 +325,4 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 };
 
 export default SingleChat;
+
