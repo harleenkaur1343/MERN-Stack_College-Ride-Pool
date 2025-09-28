@@ -78,7 +78,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 
   useEffect(() => {
     // socket = io(`${process.env.REACT_APP_API_BASE_URL}`);
-    socket = io.connect("http://localhost:8000");
+    socket = io.connect(process.env.REACT_APP_API_BASE_URL);
     socket.emit("setup", user);
     socket.on("connected", () => setSocketConnected(true));
     socket.on("typing", () => setIsTyping(true));
@@ -325,4 +325,5 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 };
 
 export default SingleChat;
+
 
