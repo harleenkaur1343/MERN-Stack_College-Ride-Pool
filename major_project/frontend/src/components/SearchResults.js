@@ -6,8 +6,8 @@ import { useAuthContest } from "../hooks/useAuthContext";
 
 const SearchResults = ({ person }) => {
   const { selectedChat, setSelectedChat } = useAuthContest();
-  console.log("person");
-  console.log(person);
+
+  console.log("Person: ", person);
  
 
   const infoBoxContent = person.map((per) => (
@@ -86,3 +86,4 @@ const SearchResults = ({ person }) => {
   );
 };
 export default SearchResults;
+
