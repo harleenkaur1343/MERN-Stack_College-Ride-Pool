@@ -16,6 +16,7 @@ import Profile from './components/Profile';
 //routes - component wraps all the individuall routes
 // route - list the individual routes
 function App() {
+  console.log("API base URL:", process.env.REACT_APP_API_BASE_URL);
   const { user } = useAuthContest();
   return (
     <div className="App">
