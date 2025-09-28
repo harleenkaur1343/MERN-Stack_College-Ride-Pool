@@ -19,7 +19,7 @@ const MyChat = ({ fetchAgain }) => {
     useAuthContest();
   const fetchChats = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_URL}/chat`, {
+      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/chat`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -111,3 +111,4 @@ const MyChat = ({ fetchAgain }) => {
   );
 };
 export default MyChat;
+
