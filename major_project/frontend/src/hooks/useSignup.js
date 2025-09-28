@@ -22,7 +22,10 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
     //testing
-   console.log(`${process.env.REACT_APP_API_BASE_URL}/user/signup`);
+    console.log("Sending payload:", {
+  name, email, phone, urn, location, password, branch, year, ridetype, role
+});
+    
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/signup`,
       {
         method: "POST",
@@ -60,4 +63,5 @@ export const useSignup = () => {
 
   return { signup, isLoading, error };
 };
+
 
