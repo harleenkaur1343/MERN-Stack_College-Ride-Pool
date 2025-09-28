@@ -50,7 +50,8 @@ mongoose
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://mern-stack-college-ride-pool.vercel.app/", //specific origin you want to give access to,
+    origin: "https://mern-stack-college-ride-pool.vercel.app/",
+    methods: ["GET", "POST"],//specific origin you want to give access to,
   },
 });
 
@@ -87,6 +88,7 @@ io.on("connection", (socket) => {
     socket.leave(userData._id);
   });
 });
+
 
 
 
