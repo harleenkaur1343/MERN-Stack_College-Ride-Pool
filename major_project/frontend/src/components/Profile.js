@@ -23,7 +23,7 @@ const Profile = (props) => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_URL}/user/?urn=${urn.toString()}`, {
+      .get(`${process.env.REACT_APP_API_BASE_URL}/user/?urn=${urn.toString()}`, {
         headers: {
           Authorization: `Bearer ${user.token}`,
         },
@@ -113,3 +113,4 @@ const Profile = (props) => {
 };
 
 export default Profile;
+
