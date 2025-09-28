@@ -29,7 +29,7 @@ const SideBar = () => {
 
       const { data } = await axios.get(
         //change auth to user
-        `${process.env.REACT_APP_URL}/user/users?search=${search}`,
+        `${process.env.REACT_APP_API_BASE_URL}/user/users?search=${search}`,
         {
           headers: {
             Authorization: `Bearer ${user.token}`,
@@ -50,7 +50,7 @@ const SideBar = () => {
       setLoadingChat(true);
 
       const { data } = await axios.post(
-        `${process.env.REACT_APP_URL}/chat`,
+        `${process.env.REACT_APP_API_BASE_URL}/chat`,
         {
           userId,
         },
@@ -189,3 +189,4 @@ const SideBar = () => {
 };
 
 export default SideBar;
+
