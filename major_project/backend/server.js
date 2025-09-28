@@ -21,7 +21,10 @@ app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-
+app.use(cors({
+  origin: "https://mern-stack-college-ride-pool.vercel.app",
+  methods: ["GET","POST","PUT","DELETE"]
+}));
 app.use((req, res, next) => {
   console.log(req.path, req.method);
   next();
@@ -32,10 +35,7 @@ app.use("/chat", chatRoutes);
 app.use("/message", messageRoutes);
 
 
-app.use(cors({
-  origin: "https://mern-stack-college-ride-pool.vercel.app",
-  methods: ["GET","POST","PUT","DELETE"]
-}));
+
 
 //http instead of app to listen
 server.listen(process.env.PORT, () => {
@@ -87,5 +87,6 @@ io.on("connection", (socket) => {
     socket.leave(userData._id);
   });
 });
+
 
 
