@@ -18,7 +18,7 @@ const Profile = (props) => {
   });
 
   const { state } = useLocation();
-  const { urn } = state;
+  const urn = state?.urn;
   // const user = localStorage.getItem("user")
 
   useEffect(() => {
@@ -113,4 +113,5 @@ const Profile = (props) => {
 };
 
 export default Profile;
+
 
