@@ -22,8 +22,9 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
 
+    console.log(`${process.env.REACT_APP_API_BASE_URL}/user/signup`)
     const response = await fetch(
-      `${process.env.REACT_APP_API_BASE_URL}/user/signup`,
+          `${process.env.REACT_APP_API_BASE_URL}/user/signup`,
       {
         method: "POST",
         headers: { "Content-Type": "application/json" },

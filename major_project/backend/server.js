@@ -1,5 +1,5 @@
 const express = require("express");
-const app = express()
+const app = express();
 const http = require("http");
 const server = http.createServer(app);
 require("dotenv").config();
@@ -12,7 +12,7 @@ const messageRoutes = require("./routes/message");
 
 const io = require("socket.io")(server, {
   cors: {
-    origin: "https://mern-stack-college-ride-pool.vercel.app/", //specific origin you want to give access to,
+    origin: "http://localhost:3000/", //specific origin you want to give access to,
   },
 });
 
@@ -26,7 +26,6 @@ const db = require("./config/db");
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-
 
 //middleware
 app.use(cors());
