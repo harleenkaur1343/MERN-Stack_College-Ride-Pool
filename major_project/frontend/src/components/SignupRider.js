@@ -253,20 +253,20 @@ To update the state of form, we can write a simple function:
                   value={form.branch}
                 >
                   <option value="B.Tech - IT">B.Tech - IT</option>
-                  <option value="B.Tech - IT">B.Tech - CSE</option>
-                  <option value="B.Tech - IT">B.Tech - ECE</option>
-                  <option value="B.Tech - IT">B.Tech - EE</option>
-                  <option value="B.Tech - IT">B.Tech - CE</option>
-                  <option value="B.Tech - IT">B.Tech - ME</option>
+                  <option value="B.Tech - CSE">B.Tech - CSE</option>
+                  <option value="B.Tech - ECE">B.Tech - ECE</option>
+                  <option value="B.Tech - EE">B.Tech - EE</option>
+                  <option value="B.Tech - CE">B.Tech - CE</option>
+                  <option value="B.Tech - ME">B.Tech - ME</option>
                   <option value="MBA">MBA</option>
                   <option value="MCA">MCA</option>
                   <option value="BCA">BCA</option>
                   <option value="M.Tech - IT">M.Tech - IT</option>
-                  <option value="M.Tech - IT">M.Tech - CSE</option>
-                  <option value="M.Tech - IT">M.Tech - ECE</option>
-                  <option value="M.Tech - IT">M.Tech - EE</option>
-                  <option value="M.Tech - IT">M.Tech - CE</option>
-                  <option value="M.Tech - IT">M.Tech - ME</option>
+                  <option value="M.Tech - CSE">M.Tech - CSE</option>
+                  <option value="M.Tech - ECE">M.Tech - ECE</option>
+                  <option value="M.Tech - EE">M.Tech - EE</option>
+                  <option value="M.Tech - CE">M.Tech - CE</option>
+                  <option value="M.Tech - ME">M.Tech - ME</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.branch}

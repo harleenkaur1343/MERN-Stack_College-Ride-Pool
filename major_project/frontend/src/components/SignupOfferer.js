@@ -80,11 +80,11 @@ To update the state of form, we can write a simple function:
         form.year,
         form.ridetype,
         "offerer"
-      ).then((response)=>{
-       
-      }).catch((err)=>{
-        console.log(err);
-      });
+      )
+        .then((response) => {})
+        .catch((err) => {
+          console.log(err);
+        });
 
       if (error == null) {
         alert("Thanks for signing up");
@@ -95,7 +95,7 @@ To update the state of form, we can write a simple function:
   };
 
   const findFormErrors = () => {
-    const { name, email, phone, urn, password, branch, year,ridetype } = form;
+    const { name, email, phone, urn, password, branch, year, ridetype } = form;
 
     const newErrors = {};
     // name errors
@@ -137,9 +137,8 @@ To update the state of form, we can write a simple function:
       delete newErrors.phone;
       setPhoneV(false);
     }
-    
-    if(!branch ||  branch === "")
-    {
+
+    if (!branch || branch === "") {
       newErrors.branch = "This is a required field!";
       setBranchV(true);
     } else {
@@ -147,8 +146,7 @@ To update the state of form, we can write a simple function:
       setBranchV(false);
     }
 
-    if(!year ||  year === "")
-    {
+    if (!year || year === "") {
       newErrors.year = "This is a required field!";
       setYearV(true);
     } else {
@@ -156,8 +154,7 @@ To update the state of form, we can write a simple function:
       setYearV(false);
     }
 
-    if(!ridetype ||  ridetype === "")
-    {
+    if (!ridetype || ridetype === "") {
       newErrors.ridetype = "This is a required field!";
       setRidetypeV(true);
     } else {
@@ -287,20 +284,20 @@ To update the state of form, we can write a simple function:
                 >
                   <option value="" selected></option>
                   <option value="B.Tech - IT">B.Tech - IT</option>
-                  <option value="B.Tech - IT">B.Tech - CSE</option>
-                  <option value="B.Tech - IT">B.Tech - ECE</option>
-                  <option value="B.Tech - IT">B.Tech - EE</option>
-                  <option value="B.Tech - IT">B.Tech - CE</option>
-                  <option value="B.Tech - IT">B.Tech - ME</option>
+                  <option value="B.Tech - CSE">B.Tech - CSE</option>
+                  <option value="B.Tech - ECE">B.Tech - ECE</option>
+                  <option value="B.Tech - EE">B.Tech - EE</option>
+                  <option value="B.Tech - CE">B.Tech - CE</option>
+                  <option value="B.Tech - ME">B.Tech - ME</option>
                   <option value="MBA">MBA</option>
                   <option value="MCA">MCA</option>
                   <option value="BCA">BCA</option>
                   <option value="M.Tech - IT">M.Tech - IT</option>
-                  <option value="M.Tech - IT">M.Tech - CSE</option>
-                  <option value="M.Tech - IT">M.Tech - ECE</option>
-                  <option value="M.Tech - IT">M.Tech - EE</option>
-                  <option value="M.Tech - IT">M.Tech - CE</option>
-                  <option value="M.Tech - IT">M.Tech - ME</option>
+                  <option value="M.Tech - CSE">M.Tech - CSE</option>
+                  <option value="M.Tech - ECE">M.Tech - ECE</option>
+                  <option value="M.Tech - EE">M.Tech - EE</option>
+                  <option value="M.Tech - CE">M.Tech - CE</option>
+                  <option value="M.Tech - ME">M.Tech - ME</option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
                   {errors.branch}
