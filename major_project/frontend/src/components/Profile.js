@@ -32,7 +32,7 @@ const Profile = (props) => {
         const { data } = response;
 
         setUserdetails(data[0]);
-        console.log("Profile", data[0]);
+        //console.log("Profile", data[0]);
       })
       .catch((err) => {
         console.log("Error profile", err);

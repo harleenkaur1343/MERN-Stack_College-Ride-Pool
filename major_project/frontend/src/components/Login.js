@@ -59,7 +59,7 @@ To update the state of form, we can write a simple function:
       //console.log(form);
 
       await login(form.email, form.urn, form.password).then((res) => {
-        console.log(res);
+        //console.log(res);
         if (res == null) {
           setForm(formvals);
           setErrors(formvals);

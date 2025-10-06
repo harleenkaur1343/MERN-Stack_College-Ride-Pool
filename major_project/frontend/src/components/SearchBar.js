@@ -58,8 +58,8 @@ const SearchBar = () => {
       })
           .then((locResult) => {
             const result = locResult.json();
-            console.log("result is this");
-            console.log(result);
+            // console.log("result is this");
+            // console.log(result);
             return result;
           })
           .then((value) => {
@@ -82,8 +82,8 @@ const SearchBar = () => {
                 });
                 
               setFetchRes(dataWrap)  ;
-              console.log("Results of search")
-              console.log(fetchRes);
+              // console.log("Results of search")
+              // console.log(fetchRes);
             }
           })
           .catch((err) => {
