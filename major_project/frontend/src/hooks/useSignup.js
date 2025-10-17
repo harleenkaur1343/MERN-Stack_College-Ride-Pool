@@ -4,8 +4,8 @@ import { useAuthContest } from "./useAuthContext";
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContest();
-  const { isAuthenticated, setIsAuthenticated } = useAuthContest();
+  // const {  } = useAuthContest();
+  const { dispatch, isAuthenticated, setIsAuthenticated } = useAuthContest();
 
   const signup = async (
     name,
