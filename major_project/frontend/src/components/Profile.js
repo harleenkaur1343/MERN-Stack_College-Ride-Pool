@@ -8,6 +8,7 @@ import { useAuthContest } from "../hooks/useAuthContext";
 
 const Profile = (props) => {
   const { user } = useAuthContest();
+  //console.log(user);
   const [userdetails, setUserdetails] = useState({
     name: "",
     email: "",
@@ -16,21 +17,26 @@ const Profile = (props) => {
     location: "",
     ride: "",
   });
-
+  let isNotSameUser = false;
   const { state } = useLocation();
   const urn = state?.urn;
+  if (urn !== user.urn) isNotSameUser = true;
+  else isNotSameUser = false;
+
   // const user = localStorage.getItem("user")
 
   useEffect(() => {
     axios
-      .get(`${process.env.REACT_APP_API_BASE_URL}/user/?urn=${urn.toString()}`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      })
+      .get(
+        `${process.env.REACT_APP_API_BASE_URL}/user/?urn=${urn.toString()}`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      )
       .then((response) => {
         const { data } = response;
-
         setUserdetails(data[0]);
         //console.log("Profile", data[0]);
       })
@@ -78,32 +84,39 @@ const Profile = (props) => {
         <br></br>
         <br></br>
         <div className="userRideCont d-flex">
-          {(userdetails && userdetails.ridetype === "Car") && (
+          {userdetails && userdetails.ridetype === "Car" && (
             <div className="rideType">
-            <img
-              style={{ width: "120px", height: "100px" }}
-              src={ridetypeCar}
-            />
-            Car
-          </div>
+              <img
+                style={{ width: "120px", height: "100px" }}
+                src={ridetypeCar}
+              />
+              Car
+            </div>
           )}
-          {(userdetails && (userdetails.ridetype === "Activa" || userdetails.ridetype === "Bike")) && (
-            <div className="rideType">
-            <img
-              style={{ width: "120px", height: "100px" }}
-              src="https://cdn2.iconfinder.com/data/icons/logistics-delivery-19/64/logistics_delivery-01-512.png"
-            />
-            Activa/Bike
-          </div>
+          {userdetails &&
+            (userdetails.ridetype === "Activa" ||
+              userdetails.ridetype === "Bike") && (
+              <div className="rideType">
+                <img
+                  style={{ width: "120px", height: "100px" }}
+                  src="https://cdn2.iconfinder.com/data/icons/logistics-delivery-19/64/logistics_delivery-01-512.png"
+                />
+                Activa/Bike
+              </div>
+            )}
+          {isNotSameUser && (
+            <div
+              className="rideType align-self-center"
+              style={{ padding: "40px 35px 40px 35px" }}
+            >
+              <img
+                style={{ width: "70px", height: "60px", marginBottom: "12px" }}
+                src="https://icons.veryicon.com/png/o/miscellaneous/common-symbols-color-icons/message-chat-1.png"
+                alt="chatting"
+              />
+              <Link to="/chatpage">Chat Now</Link>
+            </div>
           )}
-          <div className="rideType align-self-center" style={{padding:"40px 35px 40px 35px"}}>
-            <img
-              style={{ width: "70px", height: "60px",marginBottom:"12px"}}
-              src="https://icons.veryicon.com/png/o/miscellaneous/common-symbols-color-icons/message-chat-1.png"
-              alt="chatting"
-            />
-            <Link to="/chatpage">Chat Now</Link>
-          </div>
         </div>
       </div>
       <br></br>
@@ -113,5 +126,3 @@ const Profile = (props) => {
 };
 
 export default Profile;
-
-

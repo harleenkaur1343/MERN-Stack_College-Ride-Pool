@@ -33,7 +33,7 @@ const Navbar = () => {
                   />
                 </li>
                 <div className="dropdown-content" id="drop-content">
-                  <Link to="/profile" state={{ urn: user.urn }}>
+                  <Link to="/profile" state={{ urn: user.urn, name: user.name }}>
                     Profile
                   </Link>
                   <Link to="/chatpage">My Chats</Link>

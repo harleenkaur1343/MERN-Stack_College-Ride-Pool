@@ -78,8 +78,11 @@ const SearchBar = () => {
           // console.log(fetchRes);
         }
       }
-    } catch (err) {
-      alert("Could not fetch due to ", err);
+    } catch (error) {
+      //alert("Could not fetch due to ", err.message);
+      console.log("Search resuults err", error.response);
+      console.log("Search resuults err", error.request);
+      console.log("Search resuults err", error.message);
     }
   };
 
