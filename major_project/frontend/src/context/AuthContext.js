@@ -29,26 +29,23 @@ export const AuthContextProvider = ({ children }) => {
       setIsAuthenticated(true);
       const fetchChats = async () => {
         try {
-          const { data } = await axios.get(
-            `${process.env.API_BASE_URL}/chat`,
-            {
-              headers: {
-                Authorization: `Bearer ${user.token}`,
-              },
-            }
-          );
+          const { data } = await axios.get(`${process.env.API_BASE_URL}/chat`, {
+            headers: {
+              Authorization: `Bearer ${user.token}`,
+            },
+          });
           setChats(data);
         } catch (error) {
           //replaced toast
-          console.log("Error in fetching")
-          console.log(error);
+          alert(`Error in fetching ${error}`);
+         
         }
       };
     }
   }, []);
-  console.log("AuthContext State : ", state);
-  console.log("AuthContext Chats : ", chats);
-  console.log("AuthContext Selected Chat : ", selectedChat);
+  // console.log("AuthContext State : ", state);
+  // console.log("AuthContext Chats : ", chats);
+  // console.log("AuthContext Selected Chat : ", selectedChat);
 
   return (
     <AuthContext.Provider

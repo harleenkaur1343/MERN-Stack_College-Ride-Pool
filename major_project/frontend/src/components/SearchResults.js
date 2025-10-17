@@ -7,7 +7,7 @@ import { useAuthContest } from "../hooks/useAuthContext";
 const SearchResults = ({ person }) => {
   const { selectedChat, setSelectedChat } = useAuthContest();
 
-  console.log("Person: ", person);
+  //console.log("Person: ", person);
  
 
   const infoBoxContent = person.map((per) => (

@@ -60,7 +60,7 @@ To update the state of form, we can write a simple function:
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    console.log(form);
+    //console.log(form);
 
     // get our new errors
     const newErrors = findFormErrors();
@@ -166,11 +166,11 @@ To update the state of form, we can write a simple function:
       (branch === "MBA" && (year === "3rd" || year === "4th")) ||
       ((branch === "MCA" || branch === "BCA") && year === "4th")
     ) {
-      console.log("Invalid year");
+     // console.log("Invalid year");
       newErrors.year = "Invalid year";
       setYearV(true);
     } else {
-      console.log("year");
+      //console.log("year");
       delete newErrors.year;
       setYearV(false);
     }
