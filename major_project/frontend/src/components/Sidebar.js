@@ -17,7 +17,7 @@ const SideBar = () => {
     localStorage.removeItem("user");
     navigate("/register");
   };
-
+  //functioning fine
   const handleSearch = async () => {
     if (!search) {
       toast.error("Please Provide username");
@@ -26,7 +26,7 @@ const SideBar = () => {
 
     try {
       setLoading(true);
-
+      //console.log("Searched val : ", search);
       const { data } = await axios.get(
         //change auth to user
         `${process.env.REACT_APP_API_BASE_URL}/user/users?search=${search}`,
@@ -37,6 +37,8 @@ const SideBar = () => {
         }
       );
 
+      //console.log("Sidebar - Chat users search results from backend ", data);
+
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -45,10 +47,16 @@ const SideBar = () => {
     }
   };
 
-  const accessChat = async (userId) => {
+  const accessChat = async (chatuser) => {
     try {
       setLoadingChat(true);
-
+      // console.log(
+      //   "Selected chat user sender id ",
+      //   chatuser._id,
+      //   " ",
+      //   chatuser.name
+      // );
+      let userId = chatuser._id;
       const { data } = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/chat`,
         {
@@ -60,7 +68,7 @@ const SideBar = () => {
           },
         }
       );
-      //console.log("Chats in sidebar", chats);
+      //console.log("Chats of chatuser and loggedin user ", data);
       if (chats == "" || !chats.find((c) => c._id === data._id))
         setChats([data, ...chats]);
       setSelectedChat(data);
@@ -175,7 +183,7 @@ const SideBar = () => {
                   fontFamily: "Varela Round",
                   color: "black",
                 }}
-                onClick={() => accessChat(user._id)}
+                onClick={() => accessChat(user)}
               >
                 {user.name}
               </div>

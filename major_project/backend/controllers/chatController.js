@@ -10,8 +10,8 @@ const getChat = async (req, res) => {
   }
 
   let chat = await Chat.find({
-    users: { $elemMatch: { $eq: req.user.id } },
-    users: { $elemMatch: { $eq: userId } },
+    users: { $all: [req.user.id, userId] },
+    //checks if both user ids exist in users
   })
     .populate("users", "-password")
     .populate("latestMessage");
@@ -22,7 +22,7 @@ const getChat = async (req, res) => {
   });
 
   if (chat.length > 0) {
-    console.log(chat[0])
+    console.log(chat[0]);
     res.send(chat[0]);
   } else {
     const createChat = await Chat.create({
