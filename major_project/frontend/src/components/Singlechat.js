@@ -35,7 +35,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         }
       );
-      // console.log("Messages", data);
+      //console.log("Messages", data);
       setMessages(data);
       setLoading(false);
       socket.emit("join-chat", selectedChat._id);
@@ -109,7 +109,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     //console.log(e.target.value);
     setNewMessage(e.target.value);
    
-    if (!socketConnected) return;
+    if (!socketConnected) return; // add error handling here
 
     if (!typing) {
       setTyping(true);
