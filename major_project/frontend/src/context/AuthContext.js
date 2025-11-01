@@ -37,7 +37,6 @@ export const AuthContextProvider = ({ children }) => {
           setChats(data);
         } catch (error) {
           //replaced toast
-          console.log("login error ")
           alert(`Error in fetching ${error}`);
          
         }
