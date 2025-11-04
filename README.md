@@ -49,17 +49,17 @@ Use the Navbar to:
 
 **Tech Stack**
 
-**Frontend:** React.js, Context API, Axios, Fetch API
+  **Frontend:** React.js, Context API, Axios, Fetch API
+  
+  **Backend:** Node.js, Express.js, JWT
+  
+  **Database:** MongoDB Atlas
+  
+  **Chat feature using:** Socket.io
 
-**Backend:** Node.js, Express.js, JWT
 
-**Database: **MongoDB Atlas
+**Hosting:**
 
-**Chat feature using:** Socket.io
-
-
-**Hosting:
-**
-Frontend → Vercel
-
-Backend → Render
+  Frontend → Vercel
+  
+  Backend → Render
