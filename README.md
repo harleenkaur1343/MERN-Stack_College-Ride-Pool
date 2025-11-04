@@ -12,7 +12,8 @@ Users can offer rides or search for rides to and from their campus locations.
 Both roles share similar functionality for logging in, chatting, and managing profiles.
 
 **How to Use the App**
-1. Sign Up / Login
+
+**1. Sign Up / Login**
 
 Visit the site and create an account as a Rider or Offerer. The URN is a 7 digit number 
 
