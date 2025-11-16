@@ -15,18 +15,18 @@
         
 }
 .search_result_cont .viewProfileBtn{
-    color: white;
+    color: #000;
     text-decoration: none;
     padding: 10px;
-    background-color: #2f3ab6;
+    background-color: #FFC802;
     border-radius: 4px;
     font-size: 14px;
 }
 .search_result_cont .chatBtn{
-    color: #000;
+    color: #fff;
     text-decoration: none;
     padding: 10px;
-    background-color: #d5d5d5;
+    background-color: #385A64;
     border-radius: 4px;
     font-size: 14px;
     margin-left:12px;

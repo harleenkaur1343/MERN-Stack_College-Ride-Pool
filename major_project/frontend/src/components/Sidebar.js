@@ -94,7 +94,7 @@ const SideBar = () => {
         <button
           onClick={() => setOpen(!open)}
           style={{
-            backgroundColor: "#008CBA",
+            backgroundColor: "#385A64",
             color: "#fff",
             padding: "10px 20px",
             border: "none",
@@ -155,7 +155,7 @@ const SideBar = () => {
                 style={{
                   padding: "12px 16px",
                   color: "white",
-                  backgroundColor: "#2F3AB6",
+                  backgroundColor: "#385A64",
                   heignt: "50px",
                 }}
               >

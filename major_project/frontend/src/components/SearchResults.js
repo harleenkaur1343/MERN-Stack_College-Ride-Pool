@@ -2,6 +2,7 @@ import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useAuthContest } from "../hooks/useAuthContext";
+import loc_search from "../assets/images/loc_search.png"
 
 
 const SearchResults = ({ person }) => {
@@ -66,13 +67,13 @@ const SearchResults = ({ person }) => {
       {((person.length==0) || (person.length == 1 && person[0].urn===0)) && (
         <div className="no-results">
           <img
-            src="https://img.freepik.com/premium-vector/gps-navigation-concept-tiny-people-search-location-online-map-we-have-moved-city-landscape_501813-163.jpg?w=360"
-            style={{ width: "330px", marginBottom: "20px", marginTop: "20px" }}
+            src={loc_search}
+            style={{ width: "300px", marginBottom: "20px", marginTop: "20px" }}
           />
           <p
             style={{
               textAlign: "center",
-              color: "#2F3AB6",
+              color: "#1A2611;",
               fontSize: "20px",
               fontFamily: "Tilt Neon",
               backgroundColor: "white",

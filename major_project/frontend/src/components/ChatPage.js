@@ -31,6 +31,7 @@ const Chatpage = () => {
           width: "100%",
           height: "92.5vh",
           padding: "10px",
+          marginTop:"85px"
         }}
       >
         {user && <MyChat fetchAgain={fetchAgain} />}

@@ -101,8 +101,8 @@ const MyChat = ({ fetchAgain }) => {
               style={{
                 cursor: "pointer",
                 backgroundColor:
-                  selectedChat === chat ? "rgba(67, 43, 255, 0.8)" : "#E8E8E8",
-                color: selectedChat === chat ? "white" : "black",
+                  selectedChat === chat ? "#FFC802": "#E8E8E8",
+                color: selectedChat === chat ? "#000" : "black",
                 paddingLeft: "2em",
                 margin: "10px",
                 paddingRight: "2em",

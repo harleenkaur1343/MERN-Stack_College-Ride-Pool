@@ -1,71 +1,95 @@
-.header{
-    background-color: #dde8fe;
-    padding: 70px 75px;
+.header {
+  width: 100%;
+  height: 70vh;
+  overflow: hidden;
+  padding: 0px;
 }
-p{
-    font-size: 18px;
+.header-image {
+  background-image: url("../assets/images/header_image_city.jpg");
+  background-position: center;
+  background-size: cover;
+  height: 70%;
 }
-.header_content>h1{
-    font-family: "Tilt Neon";
-    color:#2e297b;
-    font-size:60px;
+.header-banner {
+  height: 30%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  align-content: center;
+  background-color: #1A2611;
+  color: white;
+  font-family: "Calibri";
+  flex-direction: column;
 }
-.header_content>p{
-    font-family: "Montserrat";
-    color:#2e297b;
-    max-width:450px;
+.header-banner > p {
+  text-align: center;
 }
-.header-img>img{
-    max-width: 100%;
-    object-fit: cover;
+p {
+  font-size: 18px;
 }
+/* .header_content > h1 {
+  font-family: "Tilt Neon";
+  color: #2e297b;
+  font-size: 60px;
+}
+.header_content > p {
+  font-family: "Montserrat";
+  color: #2e297b;
+  max-width: 450px;
+}
+.header-img > img {
+  max-width: 100%;
+  object-fit: cover;
+} */
 
 /* sign up*/
-.signup_ops{
-    background-color: #ffffff;
-    padding:50px 75px;
-    color:white;
+.signup_ops {
+  background-color: #ffffff;
+  padding: 50px 75px;
 }
-.signup_ops h4{
-    margin-bottom: 20px;
-    font-family: "Varela Round";
-    width:325px;
-    text-align: center;
+.signup_ops h4 {
+  margin-bottom: 20px;
+  font-family: "Varela Round";
+  width: 325px;
+  text-align: center;
 }
-.signup_ride{
-    background-color:#2f3ab6;
-    padding:25px;
-    margin:20px;
-    border-radius: 4px;
+.offerer_img_cont > img {
+  max-width: 100%;
 }
-.signup_ride>img{
-    margin-bottom: 24px;
+.rider_img_cont > img {
+  max-width: 90%;
 }
-.signup_offer{
-    
-    background-color:#fa7167;
-    padding:25px;
-    margin:20px;
-    border-radius: 4px;
+.signup_ride {
+  background-color: #2f3ab6;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 4px;
 }
-.signup_btns{
-    text-decoration: none;
-    padding:10px 24px;
-    background-color: white;
-    color:#4d4d4d;
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 4px;
-    transition: all 0.2s;
+.signup_ride > img {
+  margin-bottom: 24px;
 }
-.offer_btn{
-    color:#fa7167;
+.signup_offer {
+  background-color: #fa7167;
+  padding: 25px;
+  margin: 20px;
+  border-radius: 4px;
 }
-.ride_btn{
-    color:#2f3ab6;
+.signup_btns {
+  text-decoration: none;
+  padding: 10px 20px;
+  color: #4d4d4d;
+  font-size: 16px;
+  font-weight: 400;
+  border-radius: 0px;
+  transition: all 0.2s;
+  margin-bottom: 15px;
+  width: fit-content;
+  background-color: #385A64;
+  color: white;
 }
-.signup_btns:hover{
-    cursor:pointer;
-    box-shadow: 0px 4px 6px 0px #71717180;
-    transform: scale(1.02);
+
+.signup_btns:hover {
+  cursor: pointer;
+  box-shadow: 0px 4px 6px 0px #71717180;
+  transform: scale(1.02);
 }

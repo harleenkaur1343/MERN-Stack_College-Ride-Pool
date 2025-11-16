@@ -22,7 +22,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Navbar></Navbar>
-         <div className='pages' style={{minHeight:"85vh",marginTop:"80px"}}>
+         <div className='pages' style={{minHeight:"85vh",marginTop:"0px"}}>
           <Routes>
             <Route
               path="/"
