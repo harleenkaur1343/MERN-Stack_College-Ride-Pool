@@ -25,7 +25,7 @@ const getStarted = () => {
         </Container>
         <br></br>
         <Container fluid className="signup_ops">
-          <Row className="d-flex">
+          <Row className="d-flex flex-column-reverse flex-md-row">
             <Col md="5" className="d-flex flex-column ">
               <h2>Wanna offer a ride?</h2>
               <p>
