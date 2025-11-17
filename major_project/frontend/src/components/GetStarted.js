@@ -47,6 +47,7 @@ const getStarted = () => {
             </Col>
             <Col md="7" className="offerer_img_cont">
               <img src={offerer_sideimg}></img>
+              <br></br><br></br>
             </Col>
           </Row>
           <br></br>
@@ -55,6 +56,7 @@ const getStarted = () => {
           <Row className="d-flex ">
             <Col md="7" className="rider_img_cont">
               <img src={rider_sideimg}></img>
+              <br></br><br></br>
             </Col>
             <Col md="5" className="d-flex flex-column ">
               <h2>Find a ride, get started here</h2>
