@@ -355,7 +355,6 @@ To update the state of form, we can write a simple function:
                   required
                   onChange={(e) => setField("password", e.target.value)}
                   isInvalid={!!passwordV}
-                  isValid ="true"
                   value={form.password}
                 ></Form.Control>
                 <Form.Control.Feedback type="valid">
