@@ -100,7 +100,7 @@ const SearchBar = () => {
 
   return (
     <>
-      <div style={{ width: "650px" }}>
+      <div style={{ width: "90%" }}>
         <ReactSearchAutocomplete
           items={locations}
           fuseOptions={{ keys: ["area"] }} // Search on both fields

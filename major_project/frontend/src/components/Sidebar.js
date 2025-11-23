@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuthContest } from "../hooks/useAuthContext";
+import "./Sidebar.css";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
@@ -108,23 +109,7 @@ const SideBar = () => {
         {/*<h2>Chat app</h2>*/}
       </div>
       {open && (
-        <div
-          style={{
-            position: "fixed",
-            left: "20px",
-            top: "165px",
-            backgroundColor: "#030303c2",
-            borderRadius: "12px",
-            color: "white",
-            height: "70vh",
-            width: "29%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            // justifyContent:'center',
-            padding: "10px",
-          }}
-        >
+        <div className="searchResCont">
           {/* <div> */}
           <div
             className="row align-self-start"

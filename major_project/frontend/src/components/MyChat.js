@@ -8,13 +8,17 @@ import { toast } from "react-toastify";
 import SideBar from "./Sidebar";
 import { useLogout } from "../hooks/useLogout";
 
-const MyChat = ({ fetchAgain }) => {
+const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   const [loggedUser, setLoggedUser] = useState();
   const { user, chats, setChats, selectedChat, setSelectedChat } =
     useAuthContest();
   const { logout } = useLogout();
 
-
+  function chatOnClick(chat) {
+    setSelectedChat(chat);
+    setShowChatList(false);
+    console.log("Show cht click sts : ", showChatList)
+  }
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("user")));
     fetchChats();
@@ -60,7 +64,8 @@ const MyChat = ({ fetchAgain }) => {
         flexDirection: "column",
         alignItems: "center",
         padding: "3px",
-        width: "31%",
+        width: "100%",
+        height: "100%",
         backgroundColor: "white",
         paddingTop: "10px",
       }}
@@ -97,11 +102,10 @@ const MyChat = ({ fetchAgain }) => {
         {chats ? (
           chats.map((chat) => (
             <div
-              onClick={() => setSelectedChat(chat)}
+              onClick={() => chatOnClick(chat)}
               style={{
                 cursor: "pointer",
-                backgroundColor:
-                  selectedChat === chat ? "#FFC802": "#E8E8E8",
+                backgroundColor: selectedChat === chat ? "#FFC802" : "#E8E8E8",
                 color: selectedChat === chat ? "#000" : "black",
                 paddingLeft: "2em",
                 margin: "10px",

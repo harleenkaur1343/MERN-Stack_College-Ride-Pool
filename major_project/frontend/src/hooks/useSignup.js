@@ -45,11 +45,13 @@ export const useSignup = () => {
       }
     );
     const json = await response.json();
+    console.log("Signup response hook", response)
 
     if (!response.ok) {
       //response is not loading
       setIsLoading(false);
       setError(json.error);
+      throw new Error(json.error);
     }
     if (response.ok) {
       // take json token and store it in the browser is by saving it to the local storage

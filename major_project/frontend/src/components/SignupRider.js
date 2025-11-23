@@ -82,13 +82,11 @@ To update the state of form, we can write a simple function:
         "rider"
       )
         .then((response) => {
-          if (error == null) {
-            alert("Thanks for signing up");
-            setForm(formvals);
-            setErrors(formvals);
-          }
+          console.log("Signup response: ", response);
+          alert("Thanks for signing up");
         })
         .catch((err) => {
+          alert(err.message);
           console.log(err);
         });
     }
@@ -123,8 +121,8 @@ To update the state of form, we can write a simple function:
       console.log("In year check", newErrors);
     } else if (
       (branch.includes("MBA") && (year === "3rd" || year === "4th")) ||
-      ((branch.includes("MCA") || branch === "BCA") && year === "4th") ||
-      ((branch.includes("M.Tech") || branch === "BCA") && year === "4th")
+      ((branch.includes("MCA") || branch.includes("BCA")) && year === "4th") ||
+      ((branch.includes("M.Tech") || branch.includes("BCA")) && year === "4th")
     ) {
       newErrors.year = "Invalid year";
       setYearV(true);
@@ -357,10 +355,10 @@ To update the state of form, we can write a simple function:
                   isInvalid={!!passwordV}
                   value={form.password}
                 ></Form.Control>
-                <Form.Control.Feedback type="valid">
+                <p style={{ fontSize: "12px", color: "grey" }}>
                   Password must contain small and capital letters, digits and
                   special characters with min length 8
-                </Form.Control.Feedback>
+                </p>
                 <Form.Control.Feedback type="invalid">
                   {errors.password}
                 </Form.Control.Feedback>

@@ -12,7 +12,8 @@ const ChatContainer = ({ fetchAgain, setFetchAgain }) => {
       alignItems: "center",
       padding: "5px",
       backgroundColor: "white",
-      width: "66%",
+      width: "100%",
+      height:"100%",
       border: "1px solid lightgrey",
       borderRadius: "12px",
     }}
