@@ -22,7 +22,7 @@ const Chatpage = () => {
       setFetchAgain(false);
       navigate("/session-timed-out");
     }
-   
+    //console.log("Fetch again",fetchAgain)
   }, []);
   return (
     <div style={{ width: "100%" }}>

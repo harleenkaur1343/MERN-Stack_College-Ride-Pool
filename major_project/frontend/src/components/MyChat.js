@@ -20,9 +20,9 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("user")));
     fetchChats();
-  
+    // eslint-disable-next-line
   }, [fetchAgain]);
-
+  //
 
   const fetchChats = async () => {
     try {
@@ -36,7 +36,7 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
       );
       setChats(data);
     } catch (Error) {
-    
+      //replaced toast
       if (Error.response) {
         let errmsg = Error.response.data.error;
         alert(errmsg);

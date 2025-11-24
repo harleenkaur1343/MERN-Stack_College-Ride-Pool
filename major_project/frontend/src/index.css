@@ -1,21 +1,15 @@
-html{
-  min-height:85vh;
+html {
+  min-height: 85vh;
 }
-body{
-  margin-top:-15px;
-  padding:0px;
-  min-height:85vh
+body {
+  margin-top: -15px;
+  padding: 0px;
+  min-height: 85vh;
 }
 
-@media only screen and (max-width:992px)
-{
-  
+@media only screen and (max-width: 992px) {
 }
-@media only screen and (max-width:768px)
-{
- 
+@media only screen and (max-width: 768px) {
 }
-@media only screen and (max-width:480px)
-{
-  
+@media only screen and (max-width: 480px) {
 }

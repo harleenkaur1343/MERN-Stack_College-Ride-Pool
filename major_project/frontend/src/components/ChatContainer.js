@@ -3,7 +3,7 @@ import Singlechat from "./Singlechat";
 import { useAuthContest } from "../hooks/useAuthContext";
 
 const ChatContainer = ({ fetchAgain, setFetchAgain, setShowChatList, showChatList }) => {
-  // const { selectedChat } = useAuthContest();
+  const { selectedChat } = useAuthContest();
   return (
     <div className="chatContainer"
     style={{
