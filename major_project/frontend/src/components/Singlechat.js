@@ -8,7 +8,12 @@ import io from "socket.io-client";
 
 let socket, selectedChatCompare;
 
-const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+const SingleChat = ({
+  fetchAgain,
+  setFetchAgain,
+  setShowChatList,
+  showChatList,
+}) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -35,7 +40,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
           },
         }
       );
-      // console.log("Messages", data);
+      //console.log("Messages", data);
       setMessages(data);
       setLoading(false);
       socket.emit("join-chat", selectedChat._id);
@@ -108,8 +113,8 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
   const typingHandler = (e) => {
     //console.log(e.target.value);
     setNewMessage(e.target.value);
-   
-    if (!socketConnected) return;
+
+    if (!socketConnected) return; // add error handling here
 
     if (!typing) {
       setTyping(true);
@@ -127,6 +132,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }, timerLength);
   };
 
+  function onBackClick() {
+    setSelectedChat("");
+    setShowChatList(true);
+  }
+
   return (
     <>
       {selectedChat !== "" ? (
@@ -142,15 +152,15 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             }}
           >
             <button
-              onClick={() => setSelectedChat("")}
+              onClick={() => onBackClick()}
               style={{
-                backgroundColor: "#007bff",
+                backgroundColor: "#385A64",
                 color: "#fff",
                 padding: "10px 20px",
                 border: "none",
                 borderRadius: "5px",
                 cursor: "pointer",
-                fontSize: "16px",
+                fontSize: "15px",
               }}
             >
               Back
@@ -199,7 +209,6 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 marginBottom: "20px",
               }}
             >
-             
               <div
                 style={{
                   width: "100%",
@@ -220,7 +229,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <select
                   name="messageOptions"
                   style={{
-                    width: "80%",
+                    width: "75%",
                     backgroundColor: "#f5f5f5",
                     border: "1px solid #4d4d4d",
                     borderRadius: "5px",
@@ -247,49 +256,31 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                   <option value="You can select a time for meeting">
                     You can select a time for meeting
                   </option>
-                  
-                    <option value="9:30AM">
-                     9:30AM
-                    </option>
-                
-                  
-                    <option value="10:30AM">
-                     10:30AM
-                    </option>
-                  
-                    <option value="11:30AM">
-                     11:30AM
-                    </option>
-                  
-                    <option value="12:30PM">
-                     12:30PM
-                    </option>
-                  
-                    <option value="01:30PM">
-                     01:30PM
-                    </option>
-                  
-                    <option value="02:30PM">
-                     02:30PM
-                    </option>
-                  
-                    <option value="03:30PM">
-                     03:30PM
-                    </option>
-                  
-                    <option value="04:30PM">
-                     04:30PM
-                    </option>
-                  
+
+                  <option value="9:30AM">9:30AM</option>
+
+                  <option value="10:30AM">10:30AM</option>
+
+                  <option value="11:30AM">11:30AM</option>
+
+                  <option value="12:30PM">12:30PM</option>
+
+                  <option value="01:30PM">01:30PM</option>
+
+                  <option value="02:30PM">02:30PM</option>
+
+                  <option value="03:30PM">03:30PM</option>
+
+                  <option value="04:30PM">04:30PM</option>
                 </select>
                 <button
                   style={{
-                    width: "10%",
+                    width: "15%",
                     marginLeft: "12px",
-                    backgroundColor: "#007bff",
-                    color: "white",
+                    backgroundColor: "#FFC802",
+                    color: "#000",
                     textAlign: "center",
-                    padding: "10px 12px",
+                    padding: "12px 12px",
                     borderRadius: "5px",
                     border: "none",
                   }}
@@ -325,5 +316,3 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
 };
 
 export default SingleChat;
-
-
