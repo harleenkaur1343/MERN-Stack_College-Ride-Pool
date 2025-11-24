@@ -8,10 +8,10 @@
   background-image: url("../assets/images/header_image_city.jpg");
   background-position:top;
   background-size: cover;
-  height: 78%;
+  height: 77%;
 }
 .header-banner {
-  height: 22%;
+  height: 23%;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -93,3 +93,4 @@ p {
   box-shadow: 0px 4px 6px 0px #71717180;
   transform: scale(1.02);
 }
+
