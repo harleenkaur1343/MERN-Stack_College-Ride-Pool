@@ -1,2 +1,4 @@
 node_modules
 .env
+major_project/backend/server.js
+major_project/frontend/package.json

@@ -33,7 +33,9 @@ const Navbar = () => {
                   />
                 </li>
                 <div className="dropdown-content" id="drop-content">
-                  <Link to="/profile">Profile</Link>
+                  <Link to="/profile" state={{ urn: user.urn, name: user.name }}>
+                    Profile
+                  </Link>
                   <Link to="/chatpage">My Chats</Link>
                   <button
                     className="logoutBtn"

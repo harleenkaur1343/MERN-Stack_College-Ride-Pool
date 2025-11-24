@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import SearchBar from "./SearchBar";
 import { Container } from "react-bootstrap";
+import cityview_yellow_1 from "../assets/images/cityview_yellow_1.png";
 
 import "./Home.css";
 import { Link } from "react-router-dom";

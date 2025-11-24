@@ -36,7 +36,7 @@ const SideBar = () => {
           },
         }
       );
-     
+
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -60,7 +60,7 @@ const SideBar = () => {
           },
         }
       );
-      console.log("Chats in sidebar", chats);
+      //console.log("Chats in sidebar", chats);
       if (chats == "" || !chats.find((c) => c._id === data._id))
         setChats([data, ...chats]);
       setSelectedChat(data);
@@ -104,9 +104,9 @@ const SideBar = () => {
           style={{
             position: "fixed",
             left: "20px",
-            top:"165px",
+            top: "165px",
             backgroundColor: "#030303c2",
-            borderRadius:"12px",
+            borderRadius: "12px",
             color: "white",
             height: "70vh",
             width: "29%",
@@ -122,7 +122,7 @@ const SideBar = () => {
             className="row align-self-start"
             style={{ margin: "20px 0px", width: "100%" }}
           >
-            <div className="col-10" style={{padding: "0" }}>
+            <div className="col-10" style={{ padding: "0" }}>
               <input
                 className="input"
                 style={{
@@ -133,7 +133,7 @@ const SideBar = () => {
                   borderRadius: "8px",
                   padding: "0px 16px",
                   fontSize: "16px",
-                  marginRight: "4px"
+                  marginRight: "4px",
                 }}
                 placeholder="Search by name or email"
                 value={search}
@@ -170,9 +170,9 @@ const SideBar = () => {
                   borderRadius: "12px",
                   textAlign: "center",
                   padding: "10px",
-                  fontSize:"16px",
-                  fontWeight:"500",
-                  fontFamily:"Varela Round",
+                  fontSize: "16px",
+                  fontWeight: "500",
+                  fontFamily: "Varela Round",
                   color: "black",
                 }}
                 onClick={() => accessChat(user._id)}
@@ -189,4 +189,3 @@ const SideBar = () => {
 };
 
 export default SideBar;
-

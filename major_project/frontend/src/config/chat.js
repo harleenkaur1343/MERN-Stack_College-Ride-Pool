@@ -1,6 +1,6 @@
 export const getSender = (loggedUser, users) => {
-  console.log("selectedchat.users");
-  console.log(users);
+  // console.log("selectedchat.users");
+  // console.log(users);
   if (users)
     return users[0]._id === loggedUser._id ? users[1].name : users[0].name;
 

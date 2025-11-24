@@ -4,8 +4,8 @@ import { useAuthContest } from "./useAuthContext";
 export const useSignup = () => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
-  const { dispatch } = useAuthContest();
-  const { isAuthenticated, setIsAuthenticated } = useAuthContest();
+  // const {  } = useAuthContest();
+  const { dispatch, isAuthenticated, setIsAuthenticated } = useAuthContest();
 
   const signup = async (
     name,
@@ -22,9 +22,9 @@ export const useSignup = () => {
     setIsLoading(true);
     setError(null);
     //testing
-    console.log("Sending payload:", {
-  name, email, phone, urn, location, password, branch, year, ridetype, role
-});
+//     console.log("Sending payload:", {
+//   name, email, phone, urn, location, password, branch, year, ridetype, role
+// });
     
     const response = await fetch(`${process.env.REACT_APP_API_BASE_URL}/user/signup`,
       {
