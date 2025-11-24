@@ -19,7 +19,6 @@ const Signup_rider = () => {
     urn: 0,
     password: "",
     ridetype: "none",
-    password: "",
     branch: "",
     year: "",
     location: "",
