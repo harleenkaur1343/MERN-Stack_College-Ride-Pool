@@ -1,22 +1,22 @@
 .header {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   overflow: hidden;
   padding: 0px;
 }
 .header-image {
   background-image: url("../assets/images/header_image_city.jpg");
-  background-position: center;
+  background-position:top;
   background-size: cover;
-  height: 70%;
+  height: 78%;
 }
 .header-banner {
-  height: 30%;
+  height: 22%;
   display: flex;
   align-items: center;
   justify-content: center;
   align-content: center;
-  background-color: #1A2611;
+  background-color: #1a2611;
   color: white;
   font-family: "Calibri";
   flex-direction: column;
@@ -84,7 +84,7 @@ p {
   transition: all 0.2s;
   margin-bottom: 15px;
   width: fit-content;
-  background-color: #385A64;
+  background-color: #385a64;
   color: white;
 }
 
