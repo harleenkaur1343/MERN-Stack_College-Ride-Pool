@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useAuthContest } from "../hooks/useAuthContext";
 import { getSender } from "../config/chat";
 import axios from "axios";
-//import GroupChatModal from "./GroupChatModal";
-//import { getSender } from "../config/chat";
 import { toast } from "react-toastify";
 import SideBar from "./Sidebar";
 import { useLogout } from "../hooks/useLogout";
@@ -22,9 +20,9 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("user")));
     fetchChats();
-    // eslint-disable-next-line
+  
   }, [fetchAgain]);
-  //
+
 
   const fetchChats = async () => {
     try {
@@ -38,7 +36,7 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
       );
       setChats(data);
     } catch (Error) {
-      //replaced toast
+    
       if (Error.response) {
         let errmsg = Error.response.data.error;
         alert(errmsg);
