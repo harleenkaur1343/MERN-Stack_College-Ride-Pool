@@ -16,7 +16,6 @@ const Home = () => {
         // backgroundImage: `url(${cityview_yellow_1})`,
         backgroundAttachment: "fixed",
         backgroundPosition: "bottom",
-        
       }}
     >
       <Container className="d-flex flex-column justify-content-start align-items-center searchCont">

@@ -2,32 +2,54 @@ import React, { useState, useEffect, useContext } from "react";
 import { useAuthContest } from "../hooks/useAuthContext";
 import { getSender } from "../config/chat";
 import axios from "axios";
-//import GroupChatModal from "./GroupChatModal";
-//import { getSender } from "../config/chat";
 import { toast } from "react-toastify";
 import SideBar from "./Sidebar";
+import { useLogout } from "../hooks/useLogout";
 
-const MyChat = ({ fetchAgain }) => {
-  useEffect(() => {
-    setLoggedUser(JSON.parse(localStorage.getItem("user")));
-    fetchChats();
-    // eslint-disable-next-line
-  }, [fetchAgain]);
-  //
+const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   const [loggedUser, setLoggedUser] = useState();
   const { user, chats, setChats, selectedChat, setSelectedChat } =
     useAuthContest();
+  const { logout } = useLogout();
+
+  function chatOnClick(chat) {
+    setSelectedChat(chat);
+    setShowChatList(false);
+    console.log("Show cht click sts : ", showChatList)
+  }
+  useEffect(() => {
+    setLoggedUser(JSON.parse(localStorage.getItem("user")));
+    fetchChats();
+  
+  }, [fetchAgain]);
+
+
   const fetchChats = async () => {
     try {
-      const { data } = await axios.get(`${process.env.REACT_APP_API_BASE_URL}/chat`, {
-        headers: {
-          Authorization: `Bearer ${user.token}`,
-        },
-      });
+      const { data } = await axios.get(
+        `${process.env.REACT_APP_API_BASE_URL}/chat`,
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
       setChats(data);
-    } catch (error) {
-      //replaced toast
-      console.log(error);
+    } catch (Error) {
+    
+      if (Error.response) {
+        let errmsg = Error.response.data.error;
+        alert(errmsg);
+
+        if (errmsg.includes("jwt")) {
+          logout();
+        }
+      } else if (Error.request) {
+        alert(Error.request.status);
+      } else {
+        alert(Error.message);
+      }
+      console.log(Error);
     }
   };
 
@@ -40,9 +62,10 @@ const MyChat = ({ fetchAgain }) => {
         flexDirection: "column",
         alignItems: "center",
         padding: "3px",
-        width: "31%",
+        width: "100%",
+        height: "100%",
         backgroundColor: "white",
-        paddingTop:"10px"
+        paddingTop: "10px",
       }}
     >
       <div
@@ -53,12 +76,13 @@ const MyChat = ({ fetchAgain }) => {
           justifyContent: "space-between",
           width: "100%",
           padding: "5px",
-          alignContent:"center",
-
+          alignContent: "center",
         }}
       >
-        <p style={{ marginLeft: "10px", fontWeight:"500"}}>My Chats</p>
-        <span><SideBar></SideBar></span>
+        <p style={{ marginLeft: "10px", fontWeight: "500" }}>My Chats</p>
+        <span>
+          <SideBar></SideBar>
+        </span>
       </div>
       <br></br>
       <div
@@ -76,12 +100,11 @@ const MyChat = ({ fetchAgain }) => {
         {chats ? (
           chats.map((chat) => (
             <div
-              onClick={() => setSelectedChat(chat)}
+              onClick={() => chatOnClick(chat)}
               style={{
                 cursor: "pointer",
-                backgroundColor:
-                  selectedChat === chat ? "rgba(67, 43, 255, 0.8)" : "#E8E8E8",
-                color: selectedChat === chat ? "white" : "black",
+                backgroundColor: selectedChat === chat ? "#FFC802" : "#E8E8E8",
+                color: selectedChat === chat ? "#000" : "black",
                 paddingLeft: "2em",
                 margin: "10px",
                 paddingRight: "2em",
@@ -91,7 +114,7 @@ const MyChat = ({ fetchAgain }) => {
               }}
               key={chat?._id}
             >
-              {(chat.users[1]).name?chat.users[1].name:<p>none</p>}
+              {chat.users[1].name ? chat.users[1].name : <p>none</p>}
             </div>
           ))
         ) : (
@@ -111,4 +134,3 @@ const MyChat = ({ fetchAgain }) => {
   );
 };
 export default MyChat;
-
