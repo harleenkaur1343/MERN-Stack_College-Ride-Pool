@@ -2,25 +2,17 @@ import React from "react";
 import "./Home.css";
 import { Link } from "react-router-dom";
 import { useAuthContest } from "../hooks/useAuthContext";
-
+import loc_search from "../assets/images/loc_search.png";
 
 const SearchResults = ({ person }) => {
   const { selectedChat, setSelectedChat } = useAuthContest();
 
   //console.log("Person: ", person);
- 
 
   const infoBoxContent = person.map((per) => (
-    <div key={per.urn} 
+    <div
+      key={per.urn}
       className="row d-flex justify-content-between search_result_cont"
-      style={{
-        padding: "16px",
-        borderRadius: "16px",
-        color: "#4d4d4d",
-        width: "580px",
-        margin: "20px 0px",
-        boxShadow: "0px 2px 8px 0px #cfcfcf",
-      }}
     >
       <div className="col-sm-6">
         <p
@@ -49,8 +41,15 @@ const SearchResults = ({ person }) => {
           {per.branch} <br></br> {per.year} Year
         </p>
       </div>
-      <div className="col-sm-4 d-flex flex-row justify-content-center align-items-end">
-        <Link to={"/profile"} state={{urn:per.urn}} className="viewProfileBtn">
+      <div
+        className="col-sm-4 d-flex flex-row justify-content-end align-items-end"
+        style={{ width: "95%" }}
+      >
+        <Link
+          to={"/profile"}
+          state={{ urn: per.urn }}
+          className="viewProfileBtn"
+        >
           View Profile
         </Link>
         <Link to="/chatpage" className="chatBtn">
@@ -61,18 +60,18 @@ const SearchResults = ({ person }) => {
   ));
 
   return (
-    <div>
-      {(person.length > 0 && person[0].name!="") && infoBoxContent}
-      {((person.length==0) || (person.length == 1 && person[0].urn===0)) && (
+    <div style={{width:"90%", display:"flex", justifyContent:"center"}}>
+      {person.length > 0 && person[0].name != "" && infoBoxContent}
+      {(person.length == 0 || (person.length == 1 && person[0].urn === 0)) && (
         <div className="no-results">
           <img
-            src="https://img.freepik.com/premium-vector/gps-navigation-concept-tiny-people-search-location-online-map-we-have-moved-city-landscape_501813-163.jpg?w=360"
-            style={{ width: "330px", marginBottom: "20px", marginTop: "20px" }}
+            src={loc_search}
+            style={{ width: "300px", marginBottom: "20px", marginTop: "20px" }}
           />
           <p
             style={{
               textAlign: "center",
-              color: "#2F3AB6",
+              color: "#1A2611;",
               fontSize: "20px",
               fontFamily: "Tilt Neon",
               backgroundColor: "white",
@@ -86,4 +85,3 @@ const SearchResults = ({ person }) => {
   );
 };
 export default SearchResults;
-
