@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { toast } from "react-toastify";
 import { useAuthContest } from "../hooks/useAuthContext";
+import "./Sidebar.css";
 
 const SideBar = () => {
   const [search, setSearch] = useState("");
@@ -17,7 +18,7 @@ const SideBar = () => {
     localStorage.removeItem("user");
     navigate("/register");
   };
-
+  //functioning fine
   const handleSearch = async () => {
     if (!search) {
       toast.error("Please Provide username");
@@ -26,7 +27,7 @@ const SideBar = () => {
 
     try {
       setLoading(true);
-
+      //console.log("Searched val : ", search);
       const { data } = await axios.get(
         //change auth to user
         `${process.env.REACT_APP_API_BASE_URL}/user/users?search=${search}`,
@@ -37,6 +38,8 @@ const SideBar = () => {
         }
       );
 
+      //console.log("Sidebar - Chat users search results from backend ", data);
+
       setLoading(false);
       setSearchResult(data);
     } catch (error) {
@@ -45,10 +48,16 @@ const SideBar = () => {
     }
   };
 
-  const accessChat = async (userId) => {
+  const accessChat = async (chatuser) => {
     try {
       setLoadingChat(true);
-
+      // console.log(
+      //   "Selected chat user sender id ",
+      //   chatuser._id,
+      //   " ",
+      //   chatuser.name
+      // );
+      let userId = chatuser._id;
       const { data } = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/chat`,
         {
@@ -60,7 +69,7 @@ const SideBar = () => {
           },
         }
       );
-      //console.log("Chats in sidebar", chats);
+      //console.log("Chats of chatuser and loggedin user ", data);
       if (chats == "" || !chats.find((c) => c._id === data._id))
         setChats([data, ...chats]);
       setSelectedChat(data);
@@ -86,7 +95,7 @@ const SideBar = () => {
         <button
           onClick={() => setOpen(!open)}
           style={{
-            backgroundColor: "#008CBA",
+            backgroundColor: "#385A64",
             color: "#fff",
             padding: "10px 20px",
             border: "none",
@@ -100,23 +109,7 @@ const SideBar = () => {
         {/*<h2>Chat app</h2>*/}
       </div>
       {open && (
-        <div
-          style={{
-            position: "fixed",
-            left: "20px",
-            top: "165px",
-            backgroundColor: "#030303c2",
-            borderRadius: "12px",
-            color: "white",
-            height: "70vh",
-            width: "29%",
-            display: "flex",
-            flexDirection: "column",
-            alignItems: "center",
-            // justifyContent:'center',
-            padding: "10px",
-          }}
-        >
+        <div className="searchResCont">
           {/* <div> */}
           <div
             className="row align-self-start"
@@ -147,7 +140,7 @@ const SideBar = () => {
                 style={{
                   padding: "12px 16px",
                   color: "white",
-                  backgroundColor: "#2F3AB6",
+                  backgroundColor: "#385A64",
                   heignt: "50px",
                 }}
               >
@@ -175,7 +168,7 @@ const SideBar = () => {
                   fontFamily: "Varela Round",
                   color: "black",
                 }}
-                onClick={() => accessChat(user._id)}
+                onClick={() => accessChat(user)}
               >
                 {user.name}
               </div>

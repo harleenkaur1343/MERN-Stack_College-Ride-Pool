@@ -22,7 +22,7 @@ const Signup_rider = () => {
     password: "",
     branch: "",
     year: "",
-    location: "Other",
+    location: "",
     role: "rider",
   };
   const [nameV, setNameV] = useState(false);
@@ -35,8 +35,8 @@ const Signup_rider = () => {
   const [locationV, setLocationV] = useState(false);
 
   const [fetchErr, setFetchErr] = useState(null);
-  const [form, setForm] = useState({ formvals });
-  const [errors, setErrors] = useState({ formvals });
+  const [form, setForm] = useState(formvals);
+  const [errors, setErrors] = useState(formvals);
 
   const { signup, error, isLoading } = useSignup();
 
@@ -57,6 +57,7 @@ To update the state of form, we can write a simple function:
         [field]: null,
       });
   };
+  console.log("Form ", form);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -65,6 +66,7 @@ To update the state of form, we can write a simple function:
     // Conditional logic:
     if (Object.keys(newErrors).length > 0) {
       // We got errors!
+      console.log("Errors ", newErrors);
       setErrors(newErrors);
     } else {
       await signup(
@@ -80,22 +82,21 @@ To update the state of form, we can write a simple function:
         "rider"
       )
         .then((response) => {
-          if (error == null) {
-            alert("Thanks for signing up");
-            setForm(formvals);
-            setErrors(formvals);
-          }
+          console.log("Signup response: ", response);
+          alert("Thanks for signing up");
         })
         .catch((err) => {
+          alert(err.message);
           console.log(err);
         });
     }
   };
 
   const findFormErrors = () => {
-    const { name, email, phone, urn, password, branch, year } = form;
-
+    const { name, email, phone, urn, password, branch, year, location } = form;
+    console.log("Year on form submit", year === "");
     const newErrors = {};
+    console.log("Branch val when not set", branch);
     // name errors
 
     if (!name || name === "" || name.length > 40) {
@@ -106,8 +107,33 @@ To update the state of form, we can write a simple function:
       setNameV(false);
     }
 
+    if (!location || location === "") {
+      newErrors.location = "This is a required field!";
+      setLocationV(true);
+    } else {
+      delete newErrors.location;
+      setLocationV(false);
+    }
+
+    if (year === "" || !year) {
+      newErrors.year = "This is a required field!";
+      setYearV(true);
+      console.log("In year check", newErrors);
+    } else if (
+      (branch.includes("MBA") && (year === "3rd" || year === "4th")) ||
+      ((branch.includes("MCA") || branch.includes("BCA")) && year === "4th") ||
+      ((branch.includes("M.Tech") || branch.includes("BCA")) && year === "4th")
+    ) {
+      newErrors.year = "Invalid year";
+      setYearV(true);
+    } else {
+      delete newErrors.year;
+      setYearV(false);
+    }
+
     if (!email || email === "") {
       newErrors.email = "This is a required field";
+      console.log("In email check", newErrors);
       setEmailV(true);
     } else if (!email.includes("@")) {
       newErrors.email = "Invalid Email";
@@ -120,13 +146,15 @@ To update the state of form, we can write a simple function:
     if (urn.toString().length != 7) {
       newErrors.urn = "Not a valid University Roll Number!";
       setUrnV(true);
+      console.log("In urn check", newErrors);
     } else {
       delete newErrors.urn;
       setUrnV(false);
     }
 
     if (!phone || phone.length === 0) {
-      newErrors.phone = "This is a required field";
+      newErrors.phone = "This is a phone field";
+      console.log("In phone check", newErrors);
       setPhoneV(true);
     } else if (phone.toString().length != 10) {
       newErrors.phone = "Invalid Phone number";
@@ -137,31 +165,11 @@ To update the state of form, we can write a simple function:
     }
     if (!branch || branch === "") {
       newErrors.branch = "This is a required field!";
+      console.log("In branch check", newErrors);
       setBranchV(true);
     } else {
       delete newErrors.branch;
       setBranchV(false);
-    }
-
-    if (!year || year === "") {
-      newErrors.year = "This is a required field!";
-      setYearV(true);
-    } else {
-      delete newErrors.year;
-      setYearV(false);
-    }
-
-    if (
-      (branch === "MBA" && (year === "3rd" || year === "4th")) ||
-      ((branch === "MCA" || branch === "BCA") && year === "4th")
-    ) {
-      //console.log("Invalid year");
-      newErrors.year = "Invalid year";
-      setYearV(true);
-    } else {
-      //console.log("year");
-      delete newErrors.year;
-      setYearV(false);
     }
 
     if (!password || password === "") {
@@ -171,7 +179,7 @@ To update the state of form, we can write a simple function:
       delete newErrors.password;
       setPasswordV(false);
     }
-
+    console.log("Setyear val before returning", newErrors);
     return newErrors;
   };
 
@@ -187,7 +195,9 @@ To update the state of form, we can write a simple function:
           <div className="row">
             <div className="col-md-6">
               <Form.Group className="form_group">
-                <Form.Label>Name</Form.Label>
+                <Form.Label>
+                  Name <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   required
@@ -201,7 +211,9 @@ To update the state of form, we can write a simple function:
               </Form.Group>
 
               <Form.Group className="form_group">
-                <Form.Label>Email</Form.Label>
+                <Form.Label>
+                  Email <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Control
                   type="text"
                   required
@@ -215,7 +227,9 @@ To update the state of form, we can write a simple function:
               </Form.Group>
 
               <Form.Group className="form_group">
-                <Form.Label>Phone Number</Form.Label>
+                <Form.Label>
+                  Phone Number <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Control
                   type="number"
                   required
@@ -229,7 +243,9 @@ To update the state of form, we can write a simple function:
               </Form.Group>
 
               <Form.Group className="form_group">
-                <Form.Label>University Roll Number</Form.Label>
+                <Form.Label>
+                  University Roll Number <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Control
                   type="number"
                   required
@@ -244,14 +260,20 @@ To update the state of form, we can write a simple function:
             </div>
             <div className="col-md-6">
               <Form.Group className="form_group">
-                <Form.Label>Branch</Form.Label>
+                <Form.Label>
+                  Branch <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Select
                   type="text"
                   required
                   onChange={(e) => setField("branch", e.target.value)}
                   isInvalid={!!branchV}
                   value={form.branch}
+                  defaultValue=""
                 >
+                  <option value="" disabled defaultChecked>
+                    Select your branch
+                  </option>
                   <option value="B.Tech - IT">B.Tech - IT</option>
                   <option value="B.Tech - CSE">B.Tech - CSE</option>
                   <option value="B.Tech - ECE">B.Tech - ECE</option>
@@ -273,14 +295,19 @@ To update the state of form, we can write a simple function:
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="form_group">
-                <Form.Label>Year</Form.Label>
+                <Form.Label>
+                  Year <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Select
                   type="text"
-                  required
                   onChange={(e) => setField("year", e.target.value)}
+                  required
                   isInvalid={!!yearV}
                   value={form.year}
                 >
+                  <option value="" disabled defaultChecked>
+                    Choose your year
+                  </option>
                   <option value="1st">1st</option>
                   <option value="2nd">2nd</option>
                   <option value="3rd">3rd</option>
@@ -291,13 +318,16 @@ To update the state of form, we can write a simple function:
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="form_group">
-                <Form.Label>Location</Form.Label>
+                <Form.Label>
+                  Location <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Select
                   type="text"
                   required
                   onChange={(e) => setField("location", e.target.value)}
                   isInvalid={!!locationV}
                   value={form.location}
+                  defaultValue=""
                 >
                   {locations.map((loc) => {
                     return (
@@ -306,8 +336,8 @@ To update the state of form, we can write a simple function:
                       </option>
                     );
                   })}
-                  <option selected="selected" value="Other">
-                    Other
+                  <option selected="selected" value="" disabled defaultChecked>
+                    Select your location
                   </option>
                 </Form.Select>
                 <Form.Control.Feedback type="invalid">
@@ -315,7 +345,9 @@ To update the state of form, we can write a simple function:
                 </Form.Control.Feedback>
               </Form.Group>
               <Form.Group className="form_group">
-                <Form.Label>Password</Form.Label>
+                <Form.Label>
+                  Password <span style={{ color: "red" }}>*</span>
+                </Form.Label>
                 <Form.Control
                   type="password"
                   required
@@ -323,6 +355,10 @@ To update the state of form, we can write a simple function:
                   isInvalid={!!passwordV}
                   value={form.password}
                 ></Form.Control>
+                <p style={{ fontSize: "12px", color: "grey" }}>
+                  Password must contain small and capital letters, digits and
+                  special characters with min length 8
+                </p>
                 <Form.Control.Feedback type="invalid">
                   {errors.password}
                 </Form.Control.Feedback>
