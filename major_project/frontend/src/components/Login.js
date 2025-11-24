@@ -25,8 +25,8 @@ const Login = () => {
   const [passwordV, setPasswordV] = useState(false);
 
   const [fetchErr, setFetchErr] = useState(null);
-  const [form, setForm] = useState({ formvals });
-  const [errors, setErrors] = useState({ formvals });
+  const [form, setForm] = useState(formvals);
+  const [errors, setErrors] = useState(formvals);
 
   /*
 The form object will hold a key-value pair for each of our form fields, and the errors object will hold a key-value pair for each error that we come across on form submission.
@@ -85,10 +85,14 @@ To update the state of form, we can write a simple function:
       delete newErrors.email;
       setEmailV(false);
     }
+    console.log("Check error 1 ", urn);
 
-    if (urn && urn.toString().length != 7) {
+    if (urn == 0 || urn.toString().length != 7) {
+      console.log("Check error ", urn);
       newErrors.urn = "Not a valid University Roll Number!";
       setUrnV(true);
+    } else if (!urn) {
+      newErrors.urn = "Not a valid University Roll Number!";
     } else {
       delete newErrors.urn;
       setUrnV(false);
@@ -121,7 +125,9 @@ To update the state of form, we can write a simple function:
           <br></br>
 
           <Form.Group className="form_group">
-            <Form.Label>Email</Form.Label>
+            <Form.Label>
+              Email <span style={{ color: "red" }}>*</span>
+            </Form.Label>
             <Form.Control
               style={{ width: "100%" }}
               type="text"
@@ -136,7 +142,9 @@ To update the state of form, we can write a simple function:
           </Form.Group>
 
           <Form.Group className="form_group">
-            <Form.Label>University Roll Number</Form.Label>
+            <Form.Label>
+              University Roll Number <span style={{ color: "red" }}>*</span>
+            </Form.Label>
             <Form.Control
               style={{ width: "100%" }}
               type="number"
@@ -151,7 +159,9 @@ To update the state of form, we can write a simple function:
           </Form.Group>
 
           <Form.Group className="form_group">
-            <Form.Label>Password</Form.Label>
+            <Form.Label>
+              Password <span style={{ color: "red" }}>*</span>
+            </Form.Label>
             <Form.Control
               style={{ width: "100%" }}
               type="password"

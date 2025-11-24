@@ -32,10 +32,9 @@ const getStarted = () => {
                 Share your ride — good for your wallet, great for the planet.
               </p>
 
-              <Link to="/signup" className="signup_btns offer_btn">
+              <Link to="/signup_offerer" className="signup_btns offer_btn">
                 Offer a ride
               </Link>
-
               <p style={{ fontSize: "15px" }}>
                 Already a member?{" "}
                 <span className="text-primary">
