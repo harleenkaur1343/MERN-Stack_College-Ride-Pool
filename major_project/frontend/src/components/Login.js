@@ -118,7 +118,7 @@ To update the state of form, we can write a simple function:
         <Form
           noValidate
           onSubmit={handleSubmit}
-          className="signup_form"
+          className="signup_form loginform"
         
         >
           <h3>Sign In</h3>
