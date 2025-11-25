@@ -93,3 +93,17 @@ p {
   box-shadow: 0px 4px 6px 0px #71717180;
   transform: scale(1.02);
 }
+
+@media (max-width:768px){
+  .header-image {
+  background-position:center;
+  height: 75%;
+}
+.header-banner {
+  height: 25%;
+  
+}
+p{
+  font-size:14px;
+}
+}

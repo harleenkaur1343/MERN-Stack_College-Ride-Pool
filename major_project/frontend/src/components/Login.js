@@ -119,7 +119,7 @@ To update the state of form, we can write a simple function:
           noValidate
           onSubmit={handleSubmit}
           className="signup_form"
-          style={{ width: "450px" }}
+        
         >
           <h3>Sign In</h3>
           <br></br>

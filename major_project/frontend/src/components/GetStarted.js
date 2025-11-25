@@ -26,7 +26,7 @@ const getStarted = () => {
         <br></br>
         <Container fluid className="signup_ops">
           <Row className="d-flex flex-column-reverse flex-md-row">
-            <Col md="5" className="d-flex flex-column ">
+            <Col md="5" className="d-flex flex-column">
               <h2>Wanna offer a ride?</h2>
               <p>
                 Share your ride — good for your wallet, great for the planet.
@@ -35,7 +35,7 @@ const getStarted = () => {
               <Link to="/signup_offerer" className="signup_btns offer_btn">
                 Offer a ride
               </Link>
-              <p style={{ fontSize: "15px" }}>
+              <p>
                 Already a member?{" "}
                 <span className="text-primary">
                   <Link to="/login" style={{ color: "#C19700" }}>
@@ -46,7 +46,8 @@ const getStarted = () => {
             </Col>
             <Col md="7" className="offerer_img_cont">
               <img src={offerer_sideimg}></img>
-              <br></br><br></br>
+              <br></br>
+              <br></br>
             </Col>
           </Row>
           <br></br>
@@ -55,7 +56,8 @@ const getStarted = () => {
           <Row className="d-flex ">
             <Col md="7" className="rider_img_cont">
               <img src={rider_sideimg}></img>
-              <br></br><br></br>
+              <br></br>
+              <br></br>
             </Col>
             <Col md="5" className="d-flex flex-column ">
               <h2>Find a ride, get started here</h2>
@@ -65,7 +67,7 @@ const getStarted = () => {
                 Rider Signup
               </Link>
 
-              <p style={{ fontSize: "15px" }}>
+              <p>
                 Already a member?{" "}
                 <span className="text-primary">
                   <Link to="/login" style={{ color: "#d6a801ff" }}>

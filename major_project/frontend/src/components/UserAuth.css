@@ -49,3 +49,9 @@ label {
   padding: 12px;
   width: 100%;
 }
+
+@media (max-width:768px){
+  .signup_form{
+    width:90%;
+  }
+}
