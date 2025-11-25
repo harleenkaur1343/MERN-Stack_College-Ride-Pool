@@ -25,7 +25,7 @@ const getStarted = () => {
         </Container>
         <br></br>
         <Container fluid className="signup_ops">
-          <Row className="d-flex flex-column-reverse flex-md-row">
+          <Row className="d-flex flex-column-reverse flex-md-row signupoptions_cont">
             <Col md="5" className="d-flex flex-column">
               <h2>Wanna offer a ride?</h2>
               <p>
@@ -53,7 +53,7 @@ const getStarted = () => {
           <br></br>
           <br></br>
           <br></br>
-          <Row className="d-flex ">
+          <Row className="d-flex flex-md-row signupoptions_cont">
             <Col md="7" className="rider_img_cont">
               <img src={rider_sideimg}></img>
               <br></br>
