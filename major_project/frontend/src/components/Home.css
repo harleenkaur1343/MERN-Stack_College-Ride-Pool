@@ -1,33 +1,50 @@
-.searchCont{
-    height:480px;
-    padding:45px;
-    width:fit-content;
-    margin-top:120px;
-    background-color: white;
-    border-radius:12px;
-    box-shadow:0px 0px 10px 0px #b5b5b5;
-    overflow-y: scroll;
+.searchCont {
+  height: 480px;
+  padding: 45px;
+  width: 90%;
+  margin-top: 120px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0px 0px 10px 0px #b5b5b5;
+  overflow-y: scroll;
+}
+.wrapper-home {
+  background-repeat: repeat-x;
+  min-height: 85vh;
+}
+.search_result_cont {
+  padding: 16px;
+  border-radius: 16px;
+  color: #4d4d4d;
+  width: 520px;
+  margin: 20px 0px;
+  box-shadow: 0px 2px 8px 0px #cfcfcf;
+}
+.search_result_cont .viewProfileBtn {
+  color: #000;
+  text-decoration: none;
+  padding: 10px;
+  background-color: #ffc802;
+  border-radius: 4px;
+  font-size: 14px;
+}
+.search_result_cont .chatBtn {
+  color: #fff;
+  text-decoration: none;
+  padding: 10px;
+  background-color: #385a64;
+  border-radius: 4px;
+  font-size: 14px;
+  margin-left: 12px;
+}
 
-}
-.wrapper-home{
-    background-repeat: repeat-x;
-    min-height: 85vh;
-        
-}
-.search_result_cont .viewProfileBtn{
-    color: #000;
-    text-decoration: none;
-    padding: 10px;
-    background-color: #FFC802;
-    border-radius: 4px;
-    font-size: 14px;
-}
-.search_result_cont .chatBtn{
-    color: #fff;
-    text-decoration: none;
-    padding: 10px;
-    background-color: #385A64;
-    border-radius: 4px;
-    font-size: 14px;
-    margin-left:12px;
+@media (max-width: 768px) {
+  .searchCont {
+    padding: 20px;
+    width: 90%;
+  }
+  .search_result_cont {
+    width: 90%;
+    margin: 20px 0px;
+  }
 }

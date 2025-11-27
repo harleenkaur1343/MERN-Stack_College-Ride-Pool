@@ -2,7 +2,7 @@ import { React, useContext } from "react";
 import Singlechat from "./Singlechat";
 import { useAuthContest } from "../hooks/useAuthContext";
 
-const ChatContainer = ({ fetchAgain, setFetchAgain }) => {
+const ChatContainer = ({ fetchAgain, setFetchAgain, setShowChatList, showChatList }) => {
   const { selectedChat } = useAuthContest();
   return (
     <div className="chatContainer"
@@ -18,7 +18,7 @@ const ChatContainer = ({ fetchAgain, setFetchAgain }) => {
       borderRadius: "12px",
     }}
   >
-    <Singlechat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} />
+    <Singlechat fetchAgain={fetchAgain} setFetchAgain={setFetchAgain} showChatList={showChatList} setShowChatList={setShowChatList} />
   </div>
   );
 };

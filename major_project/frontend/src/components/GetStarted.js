@@ -17,66 +17,22 @@ const getStarted = () => {
     <>
       <div className="getstarted">
         <Container fluid className="header">
-          <div className="header-image"></div>
-          <div className="header-banner">
-            <h1>College Ride Pool</h1>
-            <p>Connecting Campuses, Sharing Rides, and Reducing Emissions</p>
-          </div>
+          <Row>
+            <Col
+              md="6"
+              className="header_content d-flex flex-column justify-content-center align-content-center"
+            >
+              <h1>College Ride Pool</h1>
+              <p>Connecting Campuses, Sharing Rides, and Reducing Emissions.</p>
+            </Col>
+            <Col md="6" className="d-flex justify-content-center header-img">
+              <img src={ride} alt="React" className="" />
+            </Col>
+          </Row>
         </Container>
-        <br></br>
+
         <Container fluid className="signup_ops">
-          <Row className="d-flex flex-column-reverse flex-md-row">
-            <Col md="5" className="d-flex flex-column ">
-              <h2>Wanna offer a ride?</h2>
-              <p>
-                Share your ride — good for your wallet, great for the planet.
-              </p>
-
-              <Link to="/signup" className="signup_btns offer_btn">
-                Offer a ride
-              </Link>
-
-              <p style={{ fontSize: "15px" }}>
-                Already a member?{" "}
-                <span className="text-primary">
-                  <Link to="/login" style={{ color: "#C19700" }}>
-                    Login
-                  </Link>
-                </span>
-              </p>
-            </Col>
-            <Col md="7" className="offerer_img_cont">
-              <img src={offerer_sideimg}></img>
-              <br></br><br></br>
-            </Col>
-          </Row>
-          <br></br>
-          <br></br>
-          <br></br>
-          <Row className="d-flex ">
-            <Col md="7" className="rider_img_cont">
-              <img src={rider_sideimg}></img>
-              <br></br><br></br>
-            </Col>
-            <Col md="5" className="d-flex flex-column ">
-              <h2>Find a ride, get started here</h2>
-              <p>Get easy rides at affordable prices</p>
-
-              <Link to="/signup" className="signup_btns offer_btn">
-                Rider Signup
-              </Link>
-
-              <p style={{ fontSize: "15px" }}>
-                Already a member?{" "}
-                <span className="text-primary">
-                  <Link to="/login" style={{ color: "#d6a801ff" }}>
-                    Login
-                  </Link>
-                </span>
-              </p>
-            </Col>
-          </Row>
-          {/* <Row className="d-flex justify-content-center align-items-center signup_ops_row">
+          <Row className="d-flex justify-content-center align-items-center signup_ops_row">
             <Col
               md="auto"
               className="signup_ride d-flex flex-column justify-content-center align-content-center align-items-center"
@@ -111,7 +67,7 @@ const getStarted = () => {
                 Setup your Profile
               </Link>
             </Col>
-          </Row> */}
+          </Row>
         </Container>
       </div>
     </>

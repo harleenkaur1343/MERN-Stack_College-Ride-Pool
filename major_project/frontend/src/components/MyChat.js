@@ -2,8 +2,6 @@ import React, { useState, useEffect, useContext } from "react";
 import { useAuthContest } from "../hooks/useAuthContext";
 import { getSender } from "../config/chat";
 import axios from "axios";
-//import GroupChatModal from "./GroupChatModal";
-//import { getSender } from "../config/chat";
 import { toast } from "react-toastify";
 import SideBar from "./Sidebar";
 import { useLogout } from "../hooks/useLogout";

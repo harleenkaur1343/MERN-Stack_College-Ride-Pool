@@ -1,22 +1,22 @@
 .header {
   width: 100%;
-  height: 70vh;
+  height: 80vh;
   overflow: hidden;
   padding: 0px;
 }
 .header-image {
   background-image: url("../assets/images/header_image_city.jpg");
-  background-position: center;
+  background-position: top;
   background-size: cover;
-  height: 70%;
+  height: 77%;
 }
 .header-banner {
-  height: 30%;
+  height: 23%;
   display: flex;
   align-items: center;
   justify-content: center;
   align-content: center;
-  background-color: #1A2611;
+  background-color: #1a2611;
   color: white;
   font-family: "Calibri";
   flex-direction: column;
@@ -27,20 +27,6 @@
 p {
   font-size: 18px;
 }
-/* .header_content > h1 {
-  font-family: "Tilt Neon";
-  color: #2e297b;
-  font-size: 60px;
-}
-.header_content > p {
-  font-family: "Montserrat";
-  color: #2e297b;
-  max-width: 450px;
-}
-.header-img > img {
-  max-width: 100%;
-  object-fit: cover;
-} */
 
 /* sign up*/
 .signup_ops {
@@ -84,7 +70,7 @@ p {
   transition: all 0.2s;
   margin-bottom: 15px;
   width: fit-content;
-  background-color: #385A64;
+  background-color: #385a64;
   color: white;
 }
 
@@ -92,4 +78,31 @@ p {
   cursor: pointer;
   box-shadow: 0px 4px 6px 0px #71717180;
   transform: scale(1.02);
+}
+
+@media (max-width: 768px) {
+  .header-image {
+    background-position: center;
+    height: 75%;
+  }
+  .header-banner {
+    height: 25%;
+  }
+  .signupoptions_cont > div {
+    align-items: center;
+  }
+  p {
+    font-size: 14px;
+    text-align: center;
+  }
+  h2 {
+    text-align: center;
+  }
+  .signup_ops {
+    background-color: #ffffff;
+    padding: 40px 35px;
+  }
+  .header {
+    height: 85vh;
+  }
 }

@@ -8,7 +8,12 @@ import io from "socket.io-client";
 
 let socket, selectedChatCompare;
 
-const SingleChat = ({ fetchAgain, setFetchAgain }) => {
+const SingleChat = ({
+  fetchAgain,
+  setFetchAgain,
+  setShowChatList,
+  showChatList,
+}) => {
   const [messages, setMessages] = useState([]);
   const [loading, setLoading] = useState(false);
   const [newMessage, setNewMessage] = useState("");
@@ -127,6 +132,11 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
     }, timerLength);
   };
 
+  function onBackClick() {
+    setSelectedChat("");
+    setShowChatList(true);
+  }
+
   return (
     <>
       {selectedChat !== "" ? (
@@ -142,7 +152,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
             }}
           >
             <button
-              onClick={() => setSelectedChat("")}
+              onClick={() => onBackClick()}
               style={{
                 backgroundColor: "#385A64",
                 color: "#fff",
@@ -150,7 +160,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 border: "none",
                 borderRadius: "5px",
                 cursor: "pointer",
-                fontSize: "16px",
+                fontSize: "15px",
               }}
             >
               Back
@@ -219,7 +229,7 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 <select
                   name="messageOptions"
                   style={{
-                    width: "80%",
+                    width: "75%",
                     backgroundColor: "#f5f5f5",
                     border: "1px solid #4d4d4d",
                     borderRadius: "5px",
@@ -265,12 +275,12 @@ const SingleChat = ({ fetchAgain, setFetchAgain }) => {
                 </select>
                 <button
                   style={{
-                    width: "10%",
+                    width: "15%",
                     marginLeft: "12px",
                     backgroundColor: "#FFC802",
                     color: "#000",
                     textAlign: "center",
-                    padding: "10px 12px",
+                    padding: "12px 12px",
                     borderRadius: "5px",
                     border: "none",
                   }}
