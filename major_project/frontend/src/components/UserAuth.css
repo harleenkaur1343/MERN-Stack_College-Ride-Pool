@@ -1,5 +1,6 @@
 .signup_form_cont {
   padding: 0px;
+  min-height:100vh;
   margin-top: 85px;
   background-image: url("../assets/images/yellow_bg.png");
   background-size: cover;
