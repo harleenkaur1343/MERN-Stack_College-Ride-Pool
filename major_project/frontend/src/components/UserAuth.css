@@ -1,9 +1,9 @@
 .signup_form_cont {
   padding: 0px;
-  min-height:100vh;
   margin-top: 85px;
   background-image: url("../assets/images/yellow_bg.png");
   background-size: cover;
+  min-height: 100vh;
 }
 .signup_form {
   margin: 70px 25px;
@@ -13,9 +13,8 @@
   border-radius: 8px;
   background-color: #fff;
 }
-.loginform{
-
- width: 450px;
+.loginform {
+  width: 450px;
 }
 .form_group {
   margin-bottom: 20px;
@@ -35,7 +34,7 @@ input[type="number"] {
   width: 80%;
 }
 label {
-  color: #1A2611;
+  color: #1a2611;
   /* color: #d6a801ff; */
   margin: 0;
   font-size: 17px;
@@ -47,16 +46,16 @@ label {
   box-shadow: none;
 }
 .submitBtn {
-  background-color: #385A64;
-  color:#fff;
-  weight:400;
+  background-color: #385a64;
+  color: #fff;
+  weight: 400;
   border: none;
   padding: 12px;
   width: 100%;
 }
 
-@media (max-width:768px){
-  .loginform{
-    width:90%;
+@media (max-width: 768px) {
+  .loginform {
+    width: 90%;
   }
 }
