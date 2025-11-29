@@ -38,14 +38,13 @@ export const AuthContextProvider = ({ children }) => {
         } catch (error) {
           //replaced toast
           alert(`Error in fetching ${error}`);
-         
         }
       };
     }
   }, []);
   // console.log("AuthContext State : ", state);
   // console.log("AuthContext Chats : ", chats);
-  // console.log("AuthContext Selected Chat : ", selectedChat);
+  console.log("AuthContext Selected Chat : ", selectedChat);
 
   return (
     <AuthContext.Provider

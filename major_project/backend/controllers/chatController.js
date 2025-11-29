@@ -4,6 +4,7 @@ const User = require("../models/userModel");
 
 const getChat = async (req, res) => {
   const { userId } = req.body;
+  console.log("userID", userId);
 
   if (!userId) {
     res.status(400).json({ error: "No such user exists!" });
@@ -36,6 +37,7 @@ const getChat = async (req, res) => {
     );
 
     res.status(201).json(fullChat);
+    console.log("New chat ", fullChat);
   }
 };
 
