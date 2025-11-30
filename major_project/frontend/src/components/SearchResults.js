@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuthContest } from "../hooks/useAuthContext";
 import loc_search from "../assets/images/loc_search.png";
 
-const SearchResults = ({ person }) => {
+const SearchResults = ({ person, locerror, setLocError }) => {
   const { selectedChat, setSelectedChat } = useAuthContest();
 
   //console.log("Person: ", person);
@@ -60,7 +60,15 @@ const SearchResults = ({ person }) => {
   ));
 
   return (
-    <div style={{width:"90%", display:"flex", justifyContent:"center"}}>
+    <div
+      style={{
+        width: "90%",
+        display: "flex",
+        justifyContent: "center",
+        flexDirection: "column",
+        alignItems: "center"
+      }}
+    >
       {person.length > 0 && person[0].name != "" && infoBoxContent}
       {(person.length == 0 || (person.length == 1 && person[0].urn === 0)) && (
         <div className="no-results">
@@ -68,18 +76,33 @@ const SearchResults = ({ person }) => {
             src={loc_search}
             style={{ width: "300px", marginBottom: "20px", marginTop: "20px" }}
           />
-          <p
-            style={{
-              textAlign: "center",
-              color: "#1A2611;",
-              fontSize: "20px",
-              fontFamily: "Tilt Neon",
-              backgroundColor: "white",
-            }}
-          >
-            No Search Results
-          </p>
+          {locerror == "" && (
+            <p
+              style={{
+                textAlign: "center",
+                color: "#1A2611;",
+                fontSize: "20px",
+                fontFamily: "Tilt Neon",
+                backgroundColor: "white",
+              }}
+            >
+              No search results yet
+            </p>
+          )}
         </div>
+      )}
+      {locerror != "" && (
+        <p
+          style={{
+            textAlign: "center",
+            color: "#1A2611;",
+            fontSize: "20px",
+            fontFamily: "Tilt Neon",
+            backgroundColor: "white",
+          }}
+        >
+          {locerror}
+        </p>
       )}
     </div>
   );

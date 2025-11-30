@@ -7,6 +7,8 @@ import { useAuthContest } from "../hooks/useAuthContext";
 const SearchBar = () => {
   const { user } = useAuthContest();
   const [locality, setLocality] = useState("");
+  const [locError, setLocError] = useState("");
+  const [fetchRes, setFetchRes] = useState([]);
   const items = [
     // {
     //   id: "0",
@@ -17,8 +19,8 @@ const SearchBar = () => {
     // },
   ];
   const locations = places;
-  const [fetchRes, setFetchRes] = useState([]);
-  const [isTrue, setIsTrue] = useState(false);
+
+  //const [isTrue, setIsTrue] = useState(false);
 
   const handleOnSearch = (string, results) => {
     // onSearch will have as the first callback parameter
@@ -61,10 +63,10 @@ const SearchBar = () => {
         const locResults = await response.json();
 
         if (locResults.error) {
-          setIsTrue(false);
+          //setIsTrue(false);
           throw new Error(locResults.error);
         } else {
-          setIsTrue(true);
+          //setIsTrue(true);
           let datawrap = locResults.map((val) => ({
             name: val.name,
             urn: val.urn,
@@ -73,16 +75,30 @@ const SearchBar = () => {
             year: val.year,
             role: "offerer",
           }));
-          setFetchRes(datawrap);
-          // console.log("Results of search")
-          // console.log(fetchRes);
+
+          //check for logged in user here n remove it from search results
+          datawrap = datawrap.filter((val) => {
+            return val.urn !== user.urn;
+            //console.log(val.urn)
+          });
+          if (datawrap.length == 0) {
+            throw new Error("No user found ubering through the location");
+          } else {
+            setFetchRes(datawrap);
+            setLocError("");
+          }
+
+          console.log("Results of search");
+          console.log(datawrap);
         }
       }
     } catch (error) {
-      //alert("Could not fetch due to ", err.message);
-      console.log("Search resuults err", error.response);
-      console.log("Search resuults err", error.request);
-      console.log("Search resuults err", error.message);
+      setLocError(error.message);
+     
+      // console.log("Search resuults err", error.response);
+      //  console.log("Search resuults err", error);
+      // console.log("Search resuults err", error.request);
+      // console.log("Search resuults err", error.message);
     }
   };
 
@@ -111,9 +127,14 @@ const SearchBar = () => {
           onFocus={handleOnFocus}
           autoFocus
           formatResult={formatResult}
+          placeholder="Search your location"
         />
       </div>
-      <SearchResults person={fetchRes}></SearchResults>
+      <SearchResults
+        locerror={locError}
+        person={fetchRes}
+        setLocError={setLocError}
+      ></SearchResults>
     </>
   );
 };

@@ -73,7 +73,7 @@ const getLocResults = async function (req, res) {
   const users = await User.find({ location: loc, role: "offerer" })
     .select("name _id email location urn branch year role")
     .then((user) => {
-      if (user == null) {
+      if (user == null || user.length == 0) {
         throw new Error("No matching rides");
       }
       res.status(200).json(user);
