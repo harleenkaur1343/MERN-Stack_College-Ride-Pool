@@ -8,12 +8,12 @@ import { Link } from "react-router-dom";
 
 const Home = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  /* */
+  
   return (
     <div
       className="wrapper-home"
       style={{
-        // backgroundImage: `url(${cityview_yellow_1})`,
+        backgroundImage: `url(${cityview_yellow_1})`,
         backgroundAttachment: "fixed",
         backgroundPosition: "bottom",
       }}

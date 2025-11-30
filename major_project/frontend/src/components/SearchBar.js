@@ -61,6 +61,7 @@ const SearchBar = () => {
         });
 
         const locResults = await response.json();
+        console.log("Loc results ", locResults);
 
         if (locResults.error) {
           //setIsTrue(false);
@@ -73,6 +74,7 @@ const SearchBar = () => {
             location: val.location,
             branch: val.branch,
             year: val.year,
+            _id: val._id,
             role: "offerer",
           }));
 
@@ -94,7 +96,7 @@ const SearchBar = () => {
       }
     } catch (error) {
       setLocError(error.message);
-     
+
       // console.log("Search resuults err", error.response);
       //  console.log("Search resuults err", error);
       // console.log("Search resuults err", error.request);

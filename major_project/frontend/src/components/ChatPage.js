@@ -5,28 +5,64 @@ import { useAuthContest } from "../hooks/useAuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Row, Col } from "react-bootstrap";
+import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 const Chatpage = () => {
   const [showChatList, setShowChatList] = useState(true);
   const isMobile = window.innerWidth < 768;
 
   const navigate = useNavigate();
-  const { user } = useAuthContest();
+  const location = useLocation();
+  const { user, selectedChat, setSelectedChat } = useAuthContest();
   const [fetchAgain, setFetchAgain] = useState(false);
+  // const [preselectuser, setPreSelectUser] = useState(
+  // );
 
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
     if (user) {
       setFetchAgain(true);
+      //get the chat of the user
+      //set the selected chat to this
+      if (location.state.chat_user_locsearch) {
+        preselectchat();
+      }
     } else {
       setFetchAgain(false);
       navigate("/session-timed-out");
     }
-    //console.log("Fetch again",fetchAgain)
+    
   }, []);
+
+  async function preselectchat() {
+    try {
+      const preselectuser = location.state.chat_user_locsearch;
+      console.log("Pre selected user", preselectuser);
+      console.log("LOgged in user", user);
+      const preselchat = await axios.post(
+        `${process.env.REACT_APP_API_BASE_URL}/chat`,
+        {
+          userId: preselectuser._id,
+        },
+        {
+          headers: {
+            Authorization: `Bearer ${user.token}`,
+          },
+        }
+      );
+      if (preselectchat !== "" || preselectchat.length !== 0) {
+        //throw new Error ("Chat cannot be selected")
+        console.log("Pre select chat", preselchat.data);
+        setSelectedChat(preselchat.data);
+        console.log(selectedChat);
+      }
+    } catch (error) {
+      console.log("Pre select error ", error);
+    }
+  }
   return (
     <div style={{ width: "100%" }}>
-    
       <div
         style={{
           display: "flex",
@@ -81,7 +117,6 @@ const Chatpage = () => {
             </Col>
           )}
         </Row>
-        
       </div>
     </div>
   );

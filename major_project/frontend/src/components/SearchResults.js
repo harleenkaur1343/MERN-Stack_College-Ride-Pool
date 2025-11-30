@@ -52,7 +52,7 @@ const SearchResults = ({ person, locerror, setLocError }) => {
         >
           View Profile
         </Link>
-        <Link to="/chatpage" className="chatBtn">
+        <Link to="/chatpage" className="chatBtn" state={{chat_user_locsearch: per}}>
           Chat
         </Link>
       </div>
@@ -71,7 +71,7 @@ const SearchResults = ({ person, locerror, setLocError }) => {
     >
       {person.length > 0 && person[0].name != "" && infoBoxContent}
       {(person.length == 0 || (person.length == 1 && person[0].urn === 0)) && (
-        <div className="no-results">
+        <div className="no-results"> 
           <img
             src={loc_search}
             style={{ width: "300px", marginBottom: "20px", marginTop: "20px" }}
