@@ -24,7 +24,7 @@ const SingleChat = ({
   const [timeCon, setTimeCon] = useState(false);
 
   const { user, selectedChat, setSelectedChat } = useAuthContest();
-
+  console.log("Selected chat in singlechat ", selectedChat);
   const fetchMessages = async () => {
     if (!selectedChat) {
       console.log("no selected chat");
