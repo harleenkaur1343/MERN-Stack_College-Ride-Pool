@@ -92,8 +92,10 @@ const searchUser = async (req, res) => {
     name: { $regex: search, $options: "i" },
   }).select("name _id email");
 
-  if (user) res.status(200).json(user);
-  else {
+  if (user) {
+    res.status(200).json(user);
+    console.log(user);
+  } else {
     res.status(400).json("No such user exists");
   }
 };

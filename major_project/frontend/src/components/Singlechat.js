@@ -5,6 +5,7 @@ import { getSender } from "../config/chat";
 import ScrollableChat from "./ScrollableChat";
 import { useAuthContest } from "../hooks/useAuthContext";
 import io from "socket.io-client";
+import "../components/chatter.css";
 
 let socket, selectedChatCompare;
 
@@ -165,9 +166,7 @@ const SingleChat = ({
             >
               Back
             </button>
-            <div style={{ fontSize: "25px", marginRight: "10px" }}>
-              {getSender(user, selectedChat.users)}
-            </div>
+            <div className="chatter">{getSender(user, selectedChat.users)}</div>
           </div>
 
           <div
@@ -228,15 +227,7 @@ const SingleChat = ({
               >
                 <select
                   name="messageOptions"
-                  style={{
-                    width: "75%",
-                    backgroundColor: "#f5f5f5",
-                    border: "1px solid #4d4d4d",
-                    borderRadius: "5px",
-                    outline: "none",
-                    padding: "10px",
-                    fontSize: "16px",
-                  }}
+                  className="chatmsgcont"
                   onChange={typingHandler}
                 >
                   <option selected defaultValue disabled>
@@ -273,19 +264,7 @@ const SingleChat = ({
 
                   <option value="04:30PM">04:30PM</option>
                 </select>
-                <button
-                  style={{
-                    width: "15%",
-                    marginLeft: "12px",
-                    backgroundColor: "#FFC802",
-                    color: "#000",
-                    textAlign: "center",
-                    padding: "12px 12px",
-                    borderRadius: "5px",
-                    border: "none",
-                  }}
-                  onClick={sendMessage}
-                >
+                <button className="sendbtn" onClick={sendMessage}>
                   Send
                 </button>
               </div>

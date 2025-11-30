@@ -44,20 +44,20 @@ const SideBar = () => {
       setSearchResult(data);
     } catch (error) {
       console.log(error);
-      //toast.error(error);
     }
   };
 
   const accessChat = async (chatuser) => {
     try {
       setLoadingChat(true);
-      // console.log(
-      //   "Selected chat user sender id ",
-      //   chatuser._id,
-      //   " ",
-      //   chatuser.name
-      // );
+
       let userId = chatuser._id;
+      // if(userId === user.id){
+
+      //   return;
+      // }
+      console.log("Chat user: ", chatuser);
+
       const { data } = await axios.post(
         `${process.env.REACT_APP_API_BASE_URL}/chat`,
         {
@@ -69,7 +69,7 @@ const SideBar = () => {
           },
         }
       );
-      //console.log("Chats of chatuser and loggedin user ", data);
+      console.log("Chats of chatuser and loggedin user ", data);
       if (chats == "" || !chats.find((c) => c._id === data._id))
         setChats([data, ...chats]);
       setSelectedChat(data);
@@ -97,11 +97,11 @@ const SideBar = () => {
           style={{
             backgroundColor: "#385A64",
             color: "#fff",
-            padding: "10px 20px",
+            padding: "8px 20px",
             border: "none",
             borderRadius: "5px",
             cursor: "pointer",
-            fontSize: "16px",
+            fontSize: "15px",
           }}
         >
           Search User

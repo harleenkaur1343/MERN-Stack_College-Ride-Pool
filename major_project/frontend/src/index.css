@@ -1,10 +1,13 @@
 html {
-  min-height: 85vh;
+  min-height: 100vh;
 }
 body {
   margin-top: -15px;
   padding: 0px;
-  min-height: 85vh;
+  min-height: 100vh;
+}
+#root {
+  min-height: 100vh;
 }
 
 @media only screen and (max-width: 992px) {

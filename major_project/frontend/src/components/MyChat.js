@@ -15,7 +15,7 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   function chatOnClick(chat) {
     setSelectedChat(chat);
     setShowChatList(false);
-    console.log("Show cht click sts : ", showChatList)
+    console.log("Show cht click sts : ", showChatList);
   }
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("user")));
@@ -79,7 +79,9 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
           alignContent: "center",
         }}
       >
-        <p style={{ marginLeft: "10px", fontWeight: "500" }}>My Chats</p>
+        <p style={{ marginLeft: "10px", fontWeight: "500", marginTop: "14px" }}>
+          My Chats
+        </p>
         <span>
           <SideBar></SideBar>
         </span>
