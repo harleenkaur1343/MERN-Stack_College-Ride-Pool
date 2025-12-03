@@ -25,14 +25,13 @@ const Chatpage = () => {
       setFetchAgain(true);
       //get the chat of the user
       //set the selected chat to this
-      if (location.state.chat_user_locsearch) {
+      if (location.state !== null) {
         preselectchat();
       }
     } else {
       setFetchAgain(false);
       navigate("/session-timed-out");
     }
-    
   }, []);
 
   async function preselectchat() {
