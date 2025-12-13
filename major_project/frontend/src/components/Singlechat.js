@@ -132,7 +132,33 @@ const SingleChat = ({
       }
     }, timerLength);
   };
+  
+async function removeChatHandler(chatID) {
+    if (!window.confirm("Delete Chat permanently?")) return;
+    console.log("Chat ID ,", chatID);
+    try {
+      await axios.delete(`${process.env.REACT_APP_API_BASE_URL}/chat`, {
+        data: { chat_id: chatID },
 
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
+      });
+
+      // if (delchat) { (always true checks )
+      alert("Chat deleted");
+      setSelectedChat("");
+      setChats((prev) => prev.filter((c) => c._id != chatID));
+      console.log("Current chat ");
+
+      //remove msgs too
+    } catch (err) {
+      console.log(err);
+    }
+
+    //remove from current convo
+    //trigger re render for get chats
+}
   function onBackClick() {
     setSelectedChat("");
     setShowChatList(true);
@@ -166,6 +192,21 @@ const SingleChat = ({
             >
               Back
             </button>
+       <button
+                onClick={() => removeChatHandler(selectedChat._id)}
+                style={{
+                  backgroundColor: "crimson",
+                  color: "#fff",
+                  padding: "10px 20px",
+                  border: "none",
+                  borderRadius: "5px",
+                  cursor: "pointer",
+                  fontSize: "16px",
+                  marginLeft: "16px",
+                }}
+              >
+                Delete
+              </button>
             <div className="chatter">{getSender(user, selectedChat.users)}</div>
           </div>
 
@@ -295,3 +336,4 @@ const SingleChat = ({
 };
 
 export default SingleChat;
+
