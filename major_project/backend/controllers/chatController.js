@@ -4,7 +4,6 @@ const User = require("../models/userModel");
 
 const getChat = async (req, res) => {
   const { userId } = req.body;
-  console.log("userID", userId);
 
   if (!userId) {
     res.status(400).json({ error: "No such user exists!" });
@@ -37,7 +36,6 @@ const getChat = async (req, res) => {
     );
 
     res.status(201).json(fullChat);
-    console.log("New chat ", fullChat);
   }
 };
 
@@ -54,7 +52,33 @@ const getChats = async (req, res) => {
 
   res.status(201).json(user);
 };
+
+const deleteChat = async (req, res) => {
+  const targetchat_id = req.body.chat_id;
+  console.log("Target ID: ",targetchat_id )
+
+  if (!targetchat_id) {
+    return res.status(400).json({ error: "Invalid chat reference" });
+  }
+  try {
+    const delMsgs = await Message.deleteMany({ chat: targetchat_id });
+    const delChat = await Chat.findByIdAndDelete(targetchat_id);
+    console.log(delMsgs);
+    console.log("Del chet ", delChat);
+
+    if (!delChat || !delMsgs) {
+      res.status(404).json({ error: "No chat found" });
+      return;
+    }
+    res.send({ message: "Chat deleted" });
+  } catch (err) {
+    res.status(500).json({ error: "Internal server error" });
+    console.log(err);
+  }
+};
+
 module.exports = {
   getChat,
   getChats,
+  deleteChat,
 };
