@@ -1,6 +1,6 @@
 # MERN-Stack---College-Ride-Pool Website 
 
-College Ride Pool is a MERN stack web app that connects college students for ride sharing.
+College Ride Pool is a MERN stack web app that connects college students for sharing rides.
 Users can offer rides or search for rides to and from their campus locations.
 
 **User Roles**
