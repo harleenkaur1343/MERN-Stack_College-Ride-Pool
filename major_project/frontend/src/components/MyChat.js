@@ -5,6 +5,7 @@ import axios from "axios";
 import { toast } from "react-toastify";
 import SideBar from "./Sidebar";
 import { useLogout } from "../hooks/useLogout";
+import { FaTimes } from "react-icons/fa";
 
 const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   const [loggedUser, setLoggedUser] = useState();
@@ -12,11 +13,11 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
     useAuthContest();
   const { logout } = useLogout();
 
-  function chatOnClick(chat) {
-    setSelectedChat(chat);
-    setShowChatList(false);
-    console.log("Show cht click sts : ", showChatList);
-  }
+  // function chatOnClick(chat) {
+  //   setSelectedChat(chat);
+  //   setShowChatList(false);
+  //   console.log("Show cht click sts : ", showChatList);
+  // }
   useEffect(() => {
     setLoggedUser(JSON.parse(localStorage.getItem("user")));
     fetchChats();
@@ -102,7 +103,7 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
         {chats ? (
           chats.map((chat) => (
             <div
-              onClick={() => chatOnClick(chat)}
+              onClick={() => setSelectedChat(chat)}
               style={{
                 cursor: "pointer",
                 backgroundColor: selectedChat === chat ? "#FFC802" : "#E8E8E8",
@@ -116,7 +117,10 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
               }}
               key={chat?._id}
             >
-              {chat.users[1].name ? chat.users[1].name : <p>none</p>}
+             <div>
+                {chat.users[1].name ? chat.users[1].name : <p>none</p>}
+              
+              </div>
             </div>
           ))
         ) : (
@@ -136,3 +140,4 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   );
 };
 export default MyChat;
+
