@@ -178,6 +178,7 @@ async function removeChatHandler(chatID) {
               alignItems: "center",
             }}
           >
+       <div>
             <button
               onClick={() => onBackClick()}
               style={{
@@ -206,7 +207,7 @@ async function removeChatHandler(chatID) {
                 }}
               >
                 Delete
-              </button>
+              </button></div>
             <div className="chatter">{getSender(user, selectedChat.users)}</div>
           </div>
 
@@ -336,5 +337,6 @@ async function removeChatHandler(chatID) {
 };
 
 export default SingleChat;
+
 
 
