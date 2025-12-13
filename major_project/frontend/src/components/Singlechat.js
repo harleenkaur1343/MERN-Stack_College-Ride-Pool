@@ -23,7 +23,7 @@ const SingleChat = ({
   const [isTyping, setIsTyping] = useState(false);
   const [timeCon, setTimeCon] = useState(false);
 
-  const { user, selectedChat, setSelectedChat } = useAuthContest();
+  const { user, setChats, selectedChat, setSelectedChat } = useAuthContest();
   console.log("Selected chat in singlechat ", selectedChat);
   const fetchMessages = async () => {
     if (!selectedChat) {
@@ -336,4 +336,5 @@ async function removeChatHandler(chatID) {
 };
 
 export default SingleChat;
+
 
