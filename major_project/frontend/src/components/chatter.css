@@ -22,17 +22,28 @@
   padding: 10px;
   font-size: 16px;
 }
+.leftbtns {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 15px;
+}
 
 @media (max-width: 396px) {
   .chatter {
-    font-size: 18px;
+    font-size: 15px;
     margin-right: 10px;
   }
   .sendbtn {
-    width: 25%;
+    width: 35%;
     margin-left: 12px;
   }
   .chatmsgcont {
-  width: 75%;
+    width: 65%;
+  }
+  .leftbtns {
+    padding: 8px 15px;
+    font-size: 14px;
   }
 }
