@@ -32,7 +32,7 @@
 
 @media (max-width: 396px) {
   .chatter {
-    font-size: 15px;
+    font-size: 16px;
     margin-right: 10px;
   }
   .sendbtn {
@@ -43,7 +43,7 @@
     width: 65%;
   }
   .leftbtns {
-    padding: 8px 15px;
-    font-size: 14px;
+    padding: 6px 12px;
+    font-size: 13px;
   }
 }
