@@ -53,7 +53,11 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
       console.log(Error);
     }
   };
-
+ function chatOnClick(chat) {
+    setSelectedChat(chat);
+    setShowChatList(false);
+    console.log("Show cht click sts : ", showChatList);
+ }
   return (
     <div
       style={{
@@ -103,7 +107,7 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
         {chats ? (
           chats.map((chat) => (
             <div
-              onClick={() => setSelectedChat(chat)}
+              onClick={() => chatOnClick(chat)}
               style={{
                 cursor: "pointer",
                 backgroundColor: selectedChat === chat ? "#FFC802" : "#E8E8E8",
@@ -140,4 +144,5 @@ const MyChat = ({ fetchAgain, showChatList, setShowChatList }) => {
   );
 };
 export default MyChat;
+
 
