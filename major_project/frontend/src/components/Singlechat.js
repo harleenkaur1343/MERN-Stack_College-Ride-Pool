@@ -180,29 +180,21 @@ async function removeChatHandler(chatID) {
           >
        <div>
             <button
-              onClick={() => onBackClick()}
-              style={{
-                backgroundColor: "#385A64",
-                color: "#fff",
-                padding: "10px 20px",
-                border: "none",
-                borderRadius: "5px",
-                cursor: "pointer",
-                fontSize: "15px",
+             className="leftbtns"
+                onClick={() => onBackClick()}
+                style={{
+                  backgroundColor: "#385A64",
+                  color: "#fff",
               }}
             >
               Back
             </button>
        <button
+               className="leftbtns"
                 onClick={() => removeChatHandler(selectedChat._id)}
                 style={{
                   backgroundColor: "crimson",
                   color: "#fff",
-                  padding: "10px 20px",
-                  border: "none",
-                  borderRadius: "5px",
-                  cursor: "pointer",
-                  fontSize: "16px",
                   marginLeft: "16px",
                 }}
               >
@@ -337,6 +329,7 @@ async function removeChatHandler(chatID) {
 };
 
 export default SingleChat;
+
 
 
 
