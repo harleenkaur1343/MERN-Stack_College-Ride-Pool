@@ -5,7 +5,7 @@ import SignupRider from './components/SignupRider';
 import Login from './components/Login'
 import Navbar from './components/Navbar'
 import Home from './components/Home';
-import MyChat from './components/MyChat';
+//import MyChat from './components/MyChat';
 import Chatpage from './components/ChatPage';
 import { useAuthContest } from "./hooks/useAuthContext"; 
 import Profile from './components/Profile';
