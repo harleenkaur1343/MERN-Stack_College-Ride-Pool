@@ -352,7 +352,7 @@ To update the state of form, we can write a simple function:
 
               <Form.Group className="form_group">
                 <Form.Label>
-                  University Roll Number <span style={{ color: "red" }}>*</span>
+                  University Roll Number (7 digits) <span style={{ color: "red" }}>*</span>
                 </Form.Label>
                 <Form.Control
                   type="number"
@@ -612,3 +612,4 @@ To update the state of form, we can write a simple function:
 };
 
 export default Signup_offerer;
+
