@@ -1,9 +1,9 @@
-import { React, useContext } from "react";
+import { React} from "react";
 import Singlechat from "./Singlechat";
 import { useAuthContest } from "../hooks/useAuthContext";
 
 const ChatContainer = ({ fetchAgain, setFetchAgain, setShowChatList, showChatList }) => {
-  const { selectedChat } = useAuthContest();
+  // const { selectedChat } = useAuthContest();
   return (
     <div className="chatContainer"
     style={{
@@ -24,3 +24,4 @@ const ChatContainer = ({ fetchAgain, setFetchAgain, setShowChatList, showChatLis
 };
 
 export default ChatContainer;
+
